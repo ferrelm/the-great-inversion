@@ -16,6 +16,7 @@
   --muted: #7f8c8d;
   --code-bg: #1e1e2e;
   --timeline-line: #bdc3c7;
+  --amber: #b07d2e;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -389,6 +390,10 @@ blockquote cite {
   border-left-color: var(--accent2);
   background: linear-gradient(135deg, #eef2f7, #f5f7fa);
 }
+.callout.amber {
+  border-left-color: var(--amber);
+  background: linear-gradient(135deg, #fdf8ed, #fffcf5);
+}
 .callout h5 {
   font-family: 'Source Sans 3', sans-serif;
   font-size: 16px;
@@ -397,6 +402,7 @@ blockquote cite {
   color: var(--accent);
 }
 .callout.blue h5 { color: var(--accent2); }
+.callout.amber h5 { color: var(--amber); }
 .callout p { margin-bottom: 6px; font-size: 15px; }
 
 /* ── REFERENCES SECTION ── */
@@ -540,6 +546,7 @@ blockquote cite {
 .pill.green { background: #e8f5e9; color: #2e7d32; }
 .pill.gold { background: #fff8e1; color: #f57f17; }
 .pill.blue { background: #e3f2fd; color: #1565c0; }
+.pill.red { background: #fce4ec; color: #c62828; }
 
 /* ── PRINCIPLE STRIP ── */
 .principles-strip {
@@ -627,6 +634,61 @@ blockquote cite {
 .ladder-bar.l5 { background: linear-gradient(90deg, #d4a843, #f39c12); }
 .ladder-bar.l6 { background: linear-gradient(90deg, #c0392b, #e74c3c); }
 .ladder-bar.l7 { background: linear-gradient(90deg, #1a1a2e, #534ab7); min-height: 56px; }
+
+/* ── HALF-LIFE CHART ── */
+.halflife-chart {
+  margin: 35px 0;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #e0ddd5;
+  border-radius: 6px;
+}
+.halflife-chart h4 {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 6px;
+  color: var(--accent2);
+}
+.halflife-chart .chart-caveat {
+  text-align: center;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.hl-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+.hl-label {
+  width: 160px;
+  text-align: right;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+.hl-track {
+  flex: 1;
+  height: 22px;
+  background: #ecf0f1;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.hl-fill {
+  height: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+}
 
 /* ── INTERVAL CHART ── */
 .interval-chart {
@@ -729,54 +791,6 @@ blockquote cite {
   vertical-align: top;
 }
 
-/* ── HALFLIFE CHART ── */
-.halflife-chart {
-  margin: 35px 0;
-  padding: 24px;
-  background: #fff;
-  border: 1px solid #e0ddd5;
-  border-radius: 6px;
-}
-.halflife-chart h4 {
-  font-family: 'Playfair Display', serif;
-  text-align: center;
-  font-size: 20px;
-  margin-bottom: 20px;
-  color: var(--accent2);
-}
-.hl-row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  gap: 10px;
-}
-.hl-label {
-  width: 160px;
-  text-align: right;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink);
-  flex-shrink: 0;
-}
-.hl-track {
-  flex: 1;
-  height: 22px;
-  background: #ecf0f1;
-  border-radius: 4px;
-  overflow: hidden;
-}
-.hl-fill {
-  height: 100%;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 8px;
-  font-size: 11px;
-  font-weight: 600;
-  color: #fff;
-}
-
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {
   h1 { font-size: 30px; }
@@ -823,7 +837,7 @@ blockquote cite {
 
 <p>We are witnessing what may be the most dramatic paradigm shift since object-oriented programming displaced procedural development in the 1990s. But unlike previous transitions, this one doesn't just change <em>how</em> we write software. It changes <em>what software work even means</em>.</p>
 
-<!-- ════════════════ PART I: HISTORICAL CONTEXT ════════════════ -->
+<!-- ════════════════ PART I ════════════════ -->
 <h2>I. Fifty Years of Paradigm Shifts: A History of Breaking What Worked</h2>
 
 <p>To understand the magnitude of the current disruption, it helps to see it in the context of every previous revolution that reshaped the developer's daily work. Each shift generated the same anxieties — about obsolescence, about deskilling, about the loss of craft. Each one, without exception, ultimately elevated the profession rather than diminishing it. But each one also left casualties: practitioners who refused or failed to adapt.</p>
@@ -907,19 +921,29 @@ blockquote cite {
 
 <p>For anyone who began programming in the early 1980s on a Commodore 64 or ZX Spectrum, BASIC was a revelation and a trap. It was immediate — you typed <code>PRINT "HELLO"</code> and the machine responded. But BASIC's numbered lines and unconstrained <code>GOTO</code> jumps produced what Dijkstra called "an intellectual and moral offense" — code that was nearly impossible to read, debug, or maintain<a class="ref" href="#ref2">[2]</a>.</p>
 
-<p>Learning C from Kernighan and Ritchie's book in 1995 — even decades after its publication — meant absorbing a completely different philosophy. C demanded <em>structure</em>. Functions, header files, explicit type declarations, manual memory management. It was harder, far less forgiving, but it produced code that could be read, shared, and maintained by teams. The transition from BASIC to C was, for many programmers of that era, the first experience of a truth that keeps repeating: the evolution of programming always moves toward greater discipline, not less.</p>
+<p>Learning C from Kernighan and Ritchie's book meant absorbing a completely different philosophy. C demanded <em>structure</em>. Functions, header files, explicit type declarations, manual memory management. It was harder, far less forgiving, but it produced code that could be read, shared, and maintained by teams. The transition from BASIC to C was, for many programmers of that era, the first experience of a truth that keeps repeating: the evolution of programming always moves toward greater discipline, not less.</p>
 
 <p>That same arc — from unstructured freedom to disciplined craft — is playing out again today. Except this time, the discipline isn't moving into the code. It's moving <em>before</em> the code, into the specification.</p>
 
 
-<!-- ════════════════ PART II: THE INVERSION ════════════════ -->
-<h2>II. The Inversion: When Code Became Disposable</h2>
+<!-- ════════════════ PART II ════════════════ -->
+<h2>II. The Inversion: When Code Generation Became Cheap</h2>
 
 <p>The central thesis emerging from both practitioner experience and the Thoughtworks Future of Software Development Retreat (February 2026) is deceptively simple: engineering rigour hasn't disappeared; it has migrated upstream<a class="ref" href="#ref7">[7]</a><a class="ref" href="#ref8">[8]</a>.</p>
 
+<div class="callout amber">
+<h5>A Note on the Primary Practitioner Source</h5>
+<p>Much of the specific and vivid evidence in this section — the 10× productivity figure, the email storm, the generational inversion, the "strangers in their own codebase" formulation — comes from a single practitioner's public account of a single twenty-person team<a class="ref" href="#ref1">[1]</a>. Molist's testimony is specific, internally consistent, and corroborated on most key points by the independent Thoughtworks retreat synthesis<a class="ref" href="#ref7">[7]</a><a class="ref" href="#ref9">[9]</a>. Where it is <em>not</em> independently corroborated, this article notes the limitation. Single-team narratives, however compelling, are hypothesis-generating rather than hypothesis-confirming. The productivity multiplier in particular should be treated as an observed direction, not a measured constant.</p>
+</div>
+
 <p>Molist describes the shift vividly: when his team feeds an AI agent a state machine that explicitly defines every possible application state, the generated code is nearly always correct. But when specifications are vague — the way they could afford to be when humans filled in the gaps with cultural context — the AI produces plausible-looking code that fails catastrophically in production. His example is striking: a developer asked an AI to build a notification system; it worked perfectly in testing, then sent fifty thousand emails in minutes because nobody had specified rate limiting<a class="ref" href="#ref1">[1]</a>.</p>
 
-<p>This is not an isolated anecdote. The data is now unambiguous. CodeRabbit's analysis of 470 open-source GitHub pull requests found that AI-generated code introduces 1.7 times more issues than human-written code, with up to 75% more logic and correctness errors — the kind that lead to production outages<a class="ref" href="#ref16">[16]</a>. Stack Overflow's January 2026 analysis confirmed the pattern: AI-generated code exhibits improper password handling and insecure object references at 1.5 to 2 times the rate of human code, excessive I/O operations at roughly eight times the rate, and concurrency errors at double the rate<a class="ref" href="#ref17">[17]</a>. Cortex's engineering benchmark data tells the same story from the operations side: incidents per pull request up 23.5%, change failure rate up 30% during periods of heavy GenAI usage<a class="ref" href="#ref34">[34]</a>. Most damning of all, Lightrun's 2026 survey of 200 senior SRE and DevOps leaders at large enterprises found that 43% of AI-generated code changes require manual debugging in production even after passing QA and staging tests. Not a single respondent — zero percent — described themselves as "very confident" that AI-generated code would behave correctly once deployed<a class="ref" href="#ref18">[18]</a>.</p>
+<p>This is not an isolated anecdote. CodeRabbit's analysis of 470 open-source GitHub pull requests found that AI-generated code introduces 1.7 times more issues than human-written code, with up to 75% more logic and correctness errors<a class="ref" href="#ref16">[16]</a>. Stack Overflow's January 2026 analysis confirmed the pattern: AI-generated code exhibits improper password handling and insecure object references at 1.5 to 2 times the rate of human code, excessive I/O operations at roughly eight times the rate, and concurrency errors at double the rate<a class="ref" href="#ref17">[17]</a>. Cortex's engineering benchmark data tells the same story: incidents per pull request up 23.5%, change failure rate up 30% during periods of heavy GenAI usage<a class="ref" href="#ref34">[34]</a>. Lightrun's 2026 survey of 200 senior SRE and DevOps leaders found that 43% of AI-generated code changes require manual debugging in production even after passing QA, and not a single respondent described themselves as "very confident" that AI-generated code would behave correctly once deployed<a class="ref" href="#ref18">[18]</a>.</p>
+
+<div class="callout amber">
+<h5>Source Transparency: Vendor Interests in Quality Data</h5>
+<p>The quality and error-rate figures above carry real evidentiary weight, but readers should know their provenance. CodeRabbit<a class="ref" href="#ref16">[16]</a> is a code review tool vendor; Lightrun<a class="ref" href="#ref18">[18]</a> is a production debugging vendor; Cortex<a class="ref" href="#ref34">[34]</a> is an engineering benchmarking vendor. All three benefit commercially from findings that AI-generated code has quality problems that their products address. The directional finding — that AI code introduces more quality issues — is corroborated across independent sources including Stack Overflow<a class="ref" href="#ref17">[17]</a> and academic research<a class="ref" href="#ref21">[21]</a>. But the specific multipliers (1.7×, 75%, 43%) derive from interested parties using non-public methodologies. Throughout this article, these figures establish the <em>direction</em> of the problem credibly; they do not establish the <em>magnitude</em> with precision.</p>
+</div>
 
 <p>The code looks right. It passes tests. And then it fails in ways that only a human who understood the system's hidden assumptions could have predicted.</p>
 
@@ -950,29 +974,29 @@ blockquote cite {
 <p style="text-align:center;font-size:13px;color:#999;margin:6px 0 0;">★ = Where engineering rigour now lives</p>
 </div>
 
-<p>As Chad Fowler framed it at the retreat: if we stop caring about the code itself, our rigour must go somewhere else<a class="ref" href="#ref7">[7]</a>. That "somewhere else" turns out to be specifications, test suites, and architectural documentation — artefacts that Agile had famously deprioritised for two decades.</p>
+<p>As Chad Fowler framed it at the retreat: if we stop caring about the code itself, our rigour must go somewhere else<a class="ref" href="#ref7">[7]</a>. That "somewhere else" turns out to be specifications, test suites, and architectural documentation — artefacts that a popular reading of Agile had deprioritised for two decades.</p>
 
 <div class="pull-quote">
 <p>The specification became the product. The code is dispensable. If you've got a perfect test suite and decide to rewrite your backend from Node.js to Rust, you just feed the tests to the agent.</p>
 </div>
 
-<p>This is a profound irony, and it deserves sharper treatment than a passing observation. The Agile Manifesto — signed in 2001 at a ski resort in Snowbird, Utah, by seventeen developers frustrated with exactly the kind of heavy documentation the industry is now rediscovering — explicitly valued "working software over comprehensive documentation"<a class="ref" href="#ref6">[6]</a>. For two decades, Agile's triumph over waterfall was treated as a settled question. Detailed specs, state machines, and exhaustive PRDs were relics of a slower era. Now, the most effective AI-native teams are finding that this formal documentation is precisely what makes AI agents maximally effective at code generation<a class="ref" href="#ref1">[1]</a>. The punchline is not "Agile was wrong." The punchline is: the Agile Manifesto valued working software over comprehensive documentation — and now we have discovered that comprehensive documentation is what makes the working software possible when agents write the code.</p>
+<p>This is a profound irony — and it deserves precise treatment. The Agile Manifesto, signed in 2001 at Snowbird, Utah, explicitly valued "working software over comprehensive documentation"<a class="ref" href="#ref6">[6]</a>. For two decades, the industry treated this as a settled question. Two qualifications apply here. First, the Manifesto said "over comprehensive documentation," not "instead of documentation" — the XP practices it championed, including test-driven development and continuous integration, were themselves forms of executable specification. Many of the most disciplined Agile teams were never documentation-hostile; the popular <em>caricature</em> of Agile was. Second, what is being rediscovered is not documentation as artefact but <em>specification as constraint</em>: the value is not the document but the act of resolving ambiguity before machine generation begins. The punchline is not "Agile was wrong." The punchline is: the Agile Manifesto valued working software over comprehensive documentation — and now we have discovered that, when agents write the code, comprehensive specification is what makes the working software possible.</p>
 
-<p>The Thoughtworks retreat confirmed this isn't just one team's experience. Participants found that Test-Driven Development has effectively become the strongest form of "prompt engineering" — pre-written tests serve as the specification that prevents agents from producing broken outputs and then writing broken tests to validate them<a class="ref" href="#ref8">[8]</a>. Tellingly, the retreat also pushed back on the "Agile is dead" narrative. Teams are actually <em>rediscovering</em> XP practices — pairing, trunk-based development, tight feedback loops — because these are precisely the practices that agent-assisted development requires<a class="ref" href="#ref9">[9]</a>.</p>
+<p>The Thoughtworks retreat confirmed this isn't just one team's experience. Participants found that Test-Driven Development has effectively become the strongest form of "prompt engineering" — pre-written tests serve as the specification that prevents agents from producing broken outputs and then writing broken tests to validate them<a class="ref" href="#ref8">[8]</a>. Tellingly, the retreat also pushed back on any "Agile is dead" narrative. Teams are actually <em>rediscovering</em> XP practices — pairing, trunk-based development, tight feedback loops — because these are precisely the practices that agent-assisted development requires<a class="ref" href="#ref9">[9]</a>.</p>
 
 <h3>Spec-Driven Development: From Discovery to Discipline</h3>
 
 <p>What Molist's team stumbled into through practice, the industry has since formalised into a named paradigm: Spec-Driven Development (SDD). GitHub released Spec Kit in September 2025, an open-source toolkit that structures AI-native development into four phases — specify, plan, implement, verify — with the spec as the shared source of truth that the agent builds against<a class="ref" href="#ref19">[19]</a>. Thoughtworks published on SDD explicitly, distinguishing three levels of rigour: spec-first (written before code), spec-anchored (maintained after implementation), and spec-as-source (the spec is the only human-edited artefact; code is always regenerated)<a class="ref" href="#ref20">[20]</a>. An arXiv paper by Zhu et al. formalised SDD's theoretical foundations, connecting it to the TDD and BDD traditions and identifying six elements every AI-facing specification needs: outcomes, scope boundaries, constraints, prior decisions, task breakdown, and verification criteria<a class="ref" href="#ref21">[21]</a>.</p>
 
-<p>But SDD is not a silver bullet. Martin Fowler's evaluation of SDD tools — including Kiro, Spec Kit, and Tessl — found that agents still frequently ignore or over-interpret spec instructions. A larger context window doesn't mean the AI properly attends to everything in it. In one test, an agent was provided with descriptions of existing classes as context; it ignored the note that these were <em>existing</em> components and generated duplicates of all of them<a class="ref" href="#ref22">[22]</a>. Addy Osmani's practitioner guide for O'Reilly Radar offers a useful corrective: a spec for an AI agent is not a one-time document but part of a continuous cycle of instructing, verifying, and refining — and every spec needs concrete verification criteria, not just descriptive intent<a class="ref" href="#ref33">[33]</a>. The specification-first approach dramatically reduces ambiguity, but it does not eliminate it. The human who writes the spec must still understand the system deeply enough to anticipate what the agent will misinterpret.</p>
+<p>But SDD is not a silver bullet. Martin Fowler's evaluation of SDD tools — including Kiro, Spec Kit, and Tessl — found that agents still frequently ignore or over-interpret spec instructions. In one test, an agent was provided with descriptions of existing classes as context; it ignored the note that these were <em>existing</em> components and generated duplicates of all of them<a class="ref" href="#ref22">[22]</a>. Addy Osmani's practitioner guide offers a useful corrective: a spec for an AI agent is not a one-time document but part of a continuous cycle of instructing, verifying, and refining — and every spec needs concrete verification criteria, not just descriptive intent<a class="ref" href="#ref33">[33]</a>. The specification-first approach dramatically reduces ambiguity, but it does not eliminate it. The human who writes the spec must still understand the system deeply enough to anticipate what the agent will misinterpret.</p>
 
 <div class="callout blue">
 <h5>Is This Just Waterfall With Extra Steps?</h5>
-<p>A sceptical reader will notice that state machines, decision tables, and exhaustive PRDs before code is written sounds indistinguishable from classic waterfall. The objection is understandable — but wrong. Waterfall's documentation was consumed by humans who then spent weeks or months writing code. The feedback cycle from spec to working software was measured in quarters. In the AI-native model, the spec constrains a machine that generates code in minutes, validates it against a test suite in seconds, and returns results for immediate iteration. This is the rigour of waterfall combined with the iteration speed of Agile. It is not a regression to the 1980s; it is a genuine synthesis that neither paradigm could have produced alone — because the technology to close the loop this fast didn't exist until now.</p>
+<p>A sceptical reader will notice that state machines, decision tables, and exhaustive PRDs before code is written sounds indistinguishable from classic waterfall. The objection is understandable — but wrong in one key respect. Waterfall's documentation was consumed by humans who then spent weeks or months writing code. The feedback cycle from spec to working software was measured in quarters. In the AI-native model, the spec constrains a machine that generates code in minutes, validates it against a test suite in seconds, and returns results for immediate iteration. This is the rigour of waterfall combined with the iteration speed of Agile. It is not a regression to the 1980s; it is a genuine synthesis. It is also, however, still unproven at scale: the evidence base for SDD's superiority comes primarily from early-adopter teams and vendor tooling reports, not from longitudinal controlled studies.</p>
 </div>
 
 
-<!-- ════════════════ PART III: THREE LOOPS ════════════════ -->
+<!-- ════════════════ PART III ════════════════ -->
 <h2>III. The Three Loops and the Supervisory Layer Nobody Named</h2>
 
 <p>The Thoughtworks retreat identified a structural change in the developer's workflow that had been emerging in teams worldwide but lacked a name. Traditionally, software work involved two loops: the <em>inner loop</em> of writing, testing, and debugging code, and the <em>outer loop</em> of CI/CD, deployment, and operations. The retreat recognised a third: a <em>middle loop</em> of supervisory engineering work that sits between them<a class="ref" href="#ref9">[9]</a>.</p>
@@ -980,15 +1004,12 @@ blockquote cite {
 <div class="diagram">
 <h4>The Three Loops of AI-Native Development</h4>
 <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;display:block;margin:0 auto;">
-  <!-- Inner loop -->
   <ellipse cx="180" cy="115" rx="145" ry="75" fill="none" stroke="#e74c3c" stroke-width="2.5" stroke-dasharray="8,4" opacity="0.7"/>
   <text x="180" y="90" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" font-weight="700" fill="#c0392b">INNER LOOP</text>
   <text x="180" y="110" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#555">AI generates code</text>
   <text x="180" y="126" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#555">Runs tests locally</text>
   <text x="180" y="142" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#555">Iterates on prompt</text>
   <text x="180" y="162" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#999" letter-spacing="1">MOSTLY AUTOMATED</text>
-
-  <!-- Middle loop -->
   <ellipse cx="390" cy="115" rx="145" ry="85" fill="none" stroke="#d4a843" stroke-width="2.5" opacity="0.7"/>
   <text x="390" y="82" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" font-weight="700" fill="#b8860b">MIDDLE LOOP ✦ NEW</text>
   <text x="390" y="104" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#555">Supervisory review</text>
@@ -996,8 +1017,6 @@ blockquote cite {
   <text x="390" y="136" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#555">Spec quality assurance</text>
   <text x="390" y="152" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#555">Trust calibration</text>
   <text x="390" y="172" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#999" letter-spacing="1">HUMAN + AI</text>
-
-  <!-- Outer loop -->
   <ellipse cx="580" cy="115" rx="100" ry="75" fill="none" stroke="#2c3e50" stroke-width="2.5" stroke-dasharray="4,3" opacity="0.7"/>
   <text x="580" y="90" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" font-weight="700" fill="#2c3e50">OUTER LOOP</text>
   <text x="580" y="110" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#555">CI/CD pipeline</text>
@@ -1007,12 +1026,12 @@ blockquote cite {
 </svg>
 </div>
 
-<p>This middle loop demands a skill set that is distinct from traditional coding. It requires the ability to decompose problems into agent-sized work packages, calibrate trust in AI output, detect plausible-looking but incorrect results, and maintain architectural coherence across many parallel streams of machine-generated work<a class="ref" href="#ref9">[9]</a>. The practitioners excelling at this work tend to think in terms of delegation and orchestration rather than direct implementation.</p>
+<p>This middle loop demands a skill set that is distinct from traditional coding. It requires the ability to decompose problems into agent-sized work packages, calibrate trust in AI output, detect plausible-looking but incorrect results, and maintain architectural coherence across many parallel streams of machine-generated work<a class="ref" href="#ref9">[9]</a>.</p>
 
 <p>Molist describes the dynamics bluntly: his senior engineers have become air traffic controllers, too busy reviewing AI-generated code to build anything themselves. Meanwhile, the juniors — unencumbered by muscle memory or identity investment in how code "should" be written — are thriving with AI tools as natural collaborators<a class="ref" href="#ref1">[1]</a>.</p>
 
 
-<!-- ════════════════ PART IV: JOB MARKET ════════════════ -->
+<!-- ════════════════ PART IV ════════════════ -->
 <h2>IV. The Job Market Earthquake: Who Wins, Who Drowns, Who Disappears</h2>
 
 <p>The impact of these changes on the software labour market is already visible, though the picture is more nuanced than either the doomsayers or the optimists admit. Software developer job postings are up approximately 15% since mid-2025 according to Federal Reserve data, with AI/ML-related roles leading growth at a striking 85% year-over-year increase<a class="ref" href="#ref10">[10]</a>. CNN reports that listings for software engineers on Indeed are growing faster than postings overall<a class="ref" href="#ref11">[11]</a>. The Bureau of Labor Statistics projects 15% employment growth for software developers through 2034.</p>
@@ -1021,7 +1040,6 @@ blockquote cite {
 
 <div class="bar-chart">
 <h4>Shifting Demand: Where Developer Value is Migrating (2024→2026)</h4>
-
 <div class="bar-row">
   <div class="bar-label">System Architecture</div>
   <div class="bar-track"><div class="bar-fill green" style="width:92%;">▲ High demand</div></div>
@@ -1087,7 +1105,7 @@ blockquote cite {
 
 <p>The retreat pushed back against the notion that AI eliminates the need for junior developers. In fact, participants concluded that juniors have become <em>more</em> profitable than ever — AI tools accelerate their passage through the initial net-negative phase, they serve as a call option on future productivity, and they tend to adopt AI workflows more naturally than experienced developers<a class="ref" href="#ref9">[9]</a>.</p>
 
-<p>IBM, for instance, is tripling entry-level hiring in the United States, including software developers, precisely because juniors armed with AI can now handle tasks that previously required experienced developers<a class="ref" href="#ref11">[11]</a>. Intuit is deliberately hiring more early-career developers who have grown up using AI tools<a class="ref" href="#ref11">[11]</a>.</p>
+<p>IBM is tripling entry-level hiring in the United States, including software developers, precisely because juniors armed with AI can now handle tasks that previously required experienced developers<a class="ref" href="#ref11">[11]</a>. Intuit is deliberately hiring more early-career developers who have grown up using AI tools<a class="ref" href="#ref11">[11]</a>.</p>
 
 <p>But there is a deeply troubling long-term concern embedded in this optimism. If code review was historically how developers learned the system — absorbed its architecture, understood its edge cases, built institutional knowledge — and if AI now writes the code while humans stop reading it closely, then teams risk becoming, in Molist's words, "strangers in their own codebase"<a class="ref" href="#ref1">[1]</a>. When something breaks at 3 a.m., developers will be staring at machine-written code, trying to reverse-engineer logic under production pressure.</p>
 
@@ -1096,20 +1114,25 @@ blockquote cite {
 <p>This creates what might be called the Pipeline Paradox: if juniors get hired but no longer learn systems deeply through code review, if mid-levels struggle to adapt, and if seniors are drowning in supervisory work rather than mentoring, then who becomes the next generation of senior architects? The retreat participants noted that current career ladders fail to recognise the evolving skill sets required for supervisory engineering work<a class="ref" href="#ref8">[8]</a>. The industry is producing more code than ever while potentially undermining the human capacity to understand it.</p>
 
 
-<!-- ════════════════ PART V: TRIBAL KNOWLEDGE ════════════════ -->
+<!-- ════════════════ PART V ════════════════ -->
 <h2>V. What Breaks at 2 a.m.: The Tribal Knowledge Problem</h2>
 
 <p>Molist's 2 a.m. server outage story is not just an anecdote — it is an archetype of the failure mode that AI-native teams must confront. When a server returned 503 errors, the on-call engineer consulted an AI tool. The AI read the documentation and recommended restarting the server. After six restarts and an escalation, a senior engineer looked at the logs for thirty seconds and identified the real problem: a full database connection pool caused by a background batch job. That knowledge lived nowhere except in the senior engineer's head<a class="ref" href="#ref1">[1]</a>.</p>
 
-<h3>The Amazon Kiro Incident: Tribal Knowledge at Scale</h3>
+<h3>The Amazon Kiro Incidents: Tribal Knowledge at Scale</h3>
 
-<p>Molist's story is a twenty-person team's wake-up call. Amazon's is the industry's. In December 2025, Amazon's internal AI coding agent, Kiro, was allowed to make live changes to a customer-facing cost management system. Kiro determined that the most efficient fix for a software bug was to delete the production environment entirely and recreate it from scratch. It executed this decision autonomously, at machine speed, without human approval — triggering a thirteen-hour outage<a class="ref" href="#ref23">[23]</a>.</p>
+<div class="callout amber">
+<h5>Sourcing Caveat: What Is and Isn't Verified</h5>
+<p>The incidents described below have been widely reported, but rely partly on secondary sources of varying authority. What is well-sourced: Amazon SVP Dave Treadwell publicly acknowledged that GenAI tools were "leading to unsafe practices" and that safeguards were "not yet fully established"<a class="ref" href="#ref25">[25]</a> — reported by Computerworld and Fortune<a class="ref" href="#ref32">[32]</a>, credible sources. The existence of a 90-day code safety reset across Tier-1 systems is similarly confirmed<a class="ref" href="#ref25">[25]</a>. What is <em>not</em> independently verified: the specific claim that an agent deleted a production environment<a class="ref" href="#ref23">[23]</a>, and the 6.3 million lost orders figure<a class="ref" href="#ref24">[24]</a><a class="ref" href="#ref30">[30]</a>, originate from ruh.ai, creati.ai, and Security Boulevard — secondary sources that have not been confirmed by Amazon. These are included as reported claims. The broader governance failure they illustrate is confirmed; the precise mechanism and magnitude are not.</p>
+</div>
 
-<p>That was a prelude. In early March 2026, AI-assisted code changes deployed to Amazon.com without proper approval gates caused a six-hour outage that resulted in approximately 6.3 million lost orders — a 99% drop in U.S. order volume. A second incident days earlier had already caused 120,000 lost orders and 1.6 million website errors<a class="ref" href="#ref18">[18]</a><a class="ref" href="#ref24">[24]</a>. Amazon SVP Dave Treadwell acknowledged that GenAI tools were "leading to unsafe practices" and that safeguards were "not yet fully established"<a class="ref" href="#ref25">[25]</a>. As Fortune reported, engineers across the industry are finding that reliance on AI assistants to write and deploy code is introducing systemic new risks — and the errors are piling up faster than governance can catch them<a class="ref" href="#ref32">[32]</a>.</p>
+<p>Molist's story is a twenty-person team's wake-up call. Amazon's is the industry's. In December 2025, Amazon's internal AI coding agent, Kiro, reportedly made live changes to a customer-facing cost management system and determined that the most efficient fix was to delete the production environment entirely and recreate it from scratch — executing this decision autonomously, without human approval, triggering a multi-hour outage<a class="ref" href="#ref23">[23]</a>.</p>
 
-<p>The response was sweeping: a 90-day "code safety reset" across 335 critical Tier-1 systems, mandatory senior-engineer approval for all AI-assisted production deployments, and dual human verification for every code push<a class="ref" href="#ref24">[24]</a>. The company's internal mandate requiring 80% of developers to use Kiro at least weekly remained in place, but the autonomy those agents had been granted was sharply curtailed<a class="ref" href="#ref23">[23]</a>.</p>
+<p>In early March 2026, AI-assisted code changes deployed to Amazon.com without proper approval gates reportedly caused a six-hour outage resulting in approximately 6.3 million lost orders<a class="ref" href="#ref18">[18]</a><a class="ref" href="#ref24">[24]</a>. Amazon SVP Dave Treadwell acknowledged that GenAI tools were "leading to unsafe practices" and that safeguards were "not yet fully established"<a class="ref" href="#ref25">[25]</a>. As Fortune reported, engineers across the industry are finding that reliance on AI assistants to write and deploy code is introducing systemic new risks — and the errors are piling up faster than governance can catch them<a class="ref" href="#ref32">[32]</a>.</p>
 
-<p>The Kiro incidents validate the tribal knowledge thesis at Fortune-500 scale. The AI agent that deleted a production environment didn't do so because it was broken — it did so because it lacked the institutional knowledge that a human engineer would have had: that this particular environment couldn't be recreated from scratch without cascading consequences across dependent services. Lightrun's survey data confirms this is not an Amazon-specific problem: 54% of high-severity incident resolutions at large enterprises rely on tribal knowledge rather than automated diagnostic data<a class="ref" href="#ref18">[18]</a>. In financial services, that figure rises to 74%.</p>
+<p>The response was sweeping: a 90-day "code safety reset" across 335 critical Tier-1 systems, mandatory senior-engineer approval for all AI-assisted production deployments, and dual human verification for every code push<a class="ref" href="#ref24">[24]</a>.</p>
+
+<p>The Kiro incidents validate the tribal knowledge thesis at Fortune-500 scale regardless of whether the precise figures are confirmed. The AI agent that reportedly deleted a production environment didn't do so because it was broken — it did so because it lacked the institutional knowledge that a human engineer would have had: that this particular environment couldn't be recreated from scratch without cascading consequences across dependent services. Lightrun's survey data confirms this pattern is not Amazon-specific: 54% of high-severity incident resolutions at large enterprises rely on tribal knowledge rather than automated diagnostic data<a class="ref" href="#ref18">[18]</a>. In financial services, that figure rises to 74%.</p>
 
 <p>The Thoughtworks retreat gave this problem a name and a solution framework. They proposed the concept of an "agent subconscious" — a knowledge graph built from years of post-mortems, incident data, undocumented edge cases, and the latent institutional knowledge that normally exists only in senior engineers' minds<a class="ref" href="#ref7">[7]</a><a class="ref" href="#ref9">[9]</a>. Without this context, AI agents will keep recommending the documented solution — or, worse, the "optimal" solution — while the real problem lies in undocumented system behaviour that only a human who has lived through a previous incident would recognise.</p>
 
@@ -1118,10 +1141,10 @@ blockquote cite {
 <p>A retreat participant highlighted another critical failure mode: AI agents are trained to be helpful — they are, by default, "yes-men." During an incident, you don't want agreement; you want something that challenges your assumptions. The proposal was to create deliberately adversarial agents, specifically prompted to poke holes in the human's theory of what's going wrong. Without this, the human and agent will agree with each other while the system burns<a class="ref" href="#ref1">[1]</a>.</p>
 </div>
 
-<p>This concern connects to a broader principle that emerged from the retreat, one that may be its most broadly applicable insight: <em>what helps agents also helps humans</em><a class="ref" href="#ref7">[7]</a>. Better incident documentation, clearer architectural decision records, stronger observability — these investments improve system operability for everyone, regardless of whether the operator is silicon or carbon-based.</p>
+<p>This concern connects to a broader principle from the retreat: <em>what helps agents also helps humans</em><a class="ref" href="#ref7">[7]</a>. Better incident documentation, clearer architectural decision records, stronger observability — these investments improve system operability for everyone, regardless of whether the operator is silicon or carbon-based.</p>
 
 
-<!-- ════════════════ PART VI: WHAT TO HIRE FOR ════════════════ -->
+<!-- ════════════════ PART VI ════════════════ -->
 <h2>VI. The New Hiring Calculus</h2>
 
 <p>If the work has migrated, then the job description must follow. Molist's formulation is direct: "Don't look for people that can write code. Look for architectural thinking. Can they write a spec that is not open to interpretation? Can they design a test suite that catches hallucinations? Can they debug a system they didn't write?"<a class="ref" href="#ref1">[1]</a></p>
@@ -1130,7 +1153,6 @@ blockquote cite {
 
 <div class="callout blue">
 <h5>Five Questions for Hiring in 2026</h5>
-<p>Based on the patterns emerging from practitioner reports and industry research, the hiring interview for a developer in 2026 should probe fundamentally different skills than it did two years ago:</p>
 <p><strong>1.</strong> Given a vague user story, can the candidate produce a specification unambiguous enough for an AI agent to implement correctly?</p>
 <p><strong>2.</strong> Can they design a test suite that functions as both a quality gate <em>and</em> an effective prompt constraint?</p>
 <p><strong>3.</strong> Can they read and evaluate code they didn't write — including AI-generated code — and identify architectural inconsistencies?</p>
@@ -1138,97 +1160,81 @@ blockquote cite {
 <p><strong>5.</strong> Can they articulate <em>why</em> a system works, not just <em>that</em> it works — demonstrating the kind of institutional comprehension that prevents 2 a.m. catastrophes?</p>
 </div>
 
-<!-- ════════════════ PART VII: THE GPU ANALOGY ════════════════ -->
+
+<!-- ════════════════ PART VII ════════════════ -->
 <h2>VII. The GPU Analogy: Why History Says the Craft Survives</h2>
 
-<p>Molist offers a historical parallel that is worth examining carefully. In 1992, graphics engineers hand-coded the mathematics to draw individual polygons, calculating exact pixel positions. By 1994, the GPU arrived and the hardware did the polygon rendering automatically. Any engineer who insisted on hand-coding polygons in 1995 wasn't a specialist — they were obsolete. But the graphics engineers didn't disappear. They became lighting engineers, physics programmers, and shader designers. They stopped telling the computer <em>how</em> to draw a triangle and started telling it <em>how light reflects off a surface</em><a class="ref" href="#ref1">[1]</a>.</p>
+<p>Molist offers a historical parallel that is worth examining carefully. In 1992, graphics engineers hand-coded the mathematics to draw individual polygons. By 1994, the GPU arrived and the hardware did the polygon rendering automatically. But the graphics engineers didn't disappear. They became lighting engineers, physics programmers, and shader designers. They stopped telling the computer <em>how</em> to draw a triangle and started telling it <em>how light reflects off a surface</em><a class="ref" href="#ref1">[1]</a>.</p>
 
 <p>This pattern repeats throughout computing history. Compilers didn't eliminate programmers — they freed them from assembly language. Garbage collectors didn't eliminate memory management expertise — they redirected it toward performance optimization and system design. Each automation layer raised the floor while lifting the ceiling.</p>
 
-<p>The current transition follows the same structural logic. The floor — the minimum competence needed to produce working code — has risen dramatically. Anyone can produce code now. But the ceiling — the ability to architect reliable, maintainable, secure systems at scale — has risen even further. The gap between "code that works in a demo" and "code that works in production at 2 a.m. under load" has, if anything, <em>widened</em>.</p>
-
-<p>But the analogy has a limitation worth acknowledging. When GPUs took over polygon rendering, the engineers who transitioned to lighting and physics programming had deep mathematical understanding of the underlying graphics pipeline. They didn't just <em>supervise</em> the GPU — they understood at a theoretical level exactly what it was doing. The AI transition may not work the same way. If agents write the code and developers stop reading it closely, do they retain the equivalent theoretical understanding of their own systems? Amazon's Kiro incident suggests the answer is not automatic: the agent made a technically valid decision that was operationally catastrophic, and the humans in the loop didn't catch it because they had ceded too much trust to the machine<a class="ref" href="#ref23">[23]</a>. The GPU transition worked because the humans still understood the mathematics. The AI transition will only work if the humans still understand the architecture.</p>
+<p>But the analogy has a limitation worth acknowledging directly. When GPUs took over polygon rendering, the engineers who transitioned to lighting and physics programming had deep mathematical understanding of the underlying graphics pipeline. They didn't just <em>supervise</em> the GPU — they understood at a theoretical level exactly what it was doing. The AI transition may not work the same way. If agents write the code and developers stop reading it closely, do they retain the equivalent theoretical understanding of their own systems? The Amazon incidents suggest the answer is not automatic: agents made technically valid decisions that were operationally catastrophic, and the humans in the loop didn't catch them because they had ceded too much trust to the machine<a class="ref" href="#ref23">[23]</a><a class="ref" href="#ref25">[25]</a>. The GPU transition worked because the humans still understood the mathematics. The AI transition will only work if the humans still understand the architecture.</p>
 
 
-<!-- ════════════════ PART VIII: COGNITIVE LOAD ════════════════ -->
+<!-- ════════════════ PART VIII ════════════════ -->
 <h2>VIII. The Hidden Cost: Cognitive Load and Developer Burnout</h2>
 
 <p>One of the most important findings from the Thoughtworks retreat challenges the assumption that AI tools make developers' lives easier. Multiple participants reported that while AI increases output, it simultaneously increases cognitive load and decision fatigue. As Rachel Laycock, Thoughtworks' CTO, observed: the move to managing multiple concurrent AI-driven work streams doesn't reduce mental burden — it transforms it into a different, potentially more exhausting kind of burden<a class="ref" href="#ref14">[14]</a>.</p>
 
-<p>The data confirms this isn't just a feeling. CodeRabbit's analysis found that reviewers spend 91% more time on AI-generated code than on human-written code, with three times more readability problems and 75% more logic errors<a class="ref" href="#ref16">[16]</a>. AI doesn't reduce review work — it <em>increases</em> it, while simultaneously increasing the volume of code that needs reviewing. Teams using AI assistants without quality guardrails see a 35–40% increase in bug density within six months<a class="ref" href="#ref26">[26]</a>. Meanwhile, IEEE Spectrum reported in January 2026 that AI coding quality may have plateaued or even declined — tasks that once took five hours with AI assistance were taking seven or eight, as model quality degraded on complex real-world problems<a class="ref" href="#ref27">[27]</a>.</p>
+<p>The data confirms this isn't just a feeling. CodeRabbit's analysis found that reviewers spend 91% more time on AI-generated code than on human-written code, with three times more readability problems and 75% more logic errors<a class="ref" href="#ref16">[16]</a>. (The vendor-interest caveat noted in §II applies here: the directional finding is credible; the precise multipliers come from an interested party.) Teams using AI assistants without quality guardrails see a 35–40% increase in bug density within six months<a class="ref" href="#ref26">[26]</a>. Meanwhile, IEEE Spectrum reported in January 2026 that AI coding quality may have plateaued or even declined on complex real-world problems<a class="ref" href="#ref27">[27]</a>.</p>
 
 <p>Developer sentiment reflects this strain. Stack Overflow's 2025 Developer Survey found that 46% of developers actively distrust AI tools' output accuracy, compared to only 3% who report high trust. Positive sentiment toward AI coding tools dropped to 60% from over 70% in prior years<a class="ref" href="#ref28">[28]</a>. Margaret Storey, Professor of Computer Science at the University of Victoria, captured the risk precisely: velocity without understanding is not sustainable<a class="ref" href="#ref14">[14]</a>. This is the "productivity experience paradox" that Molist observed in his own team — developers who are measurably more productive but subjectively more miserable<a class="ref" href="#ref1">[1]</a>.</p>
 
-<p>The implications for team management are significant. If the organisation can extract more output without investing in developer experience, the business case for that investment weakens — unless the definition of developer experience itself evolves to account for supervisory work<a class="ref" href="#ref9">[9]</a>. CodeRabbit's year-in-review framed the shift bluntly: 2025 was the year of AI speed; 2026 must be the year of AI quality<a class="ref" href="#ref29">[29]</a>. This is a governance question as much as a technical one.</p>
 
-
-<!-- ════════════════ PART IX: FORWARD LOOK ════════════════ -->
+<!-- ════════════════ PART IX ════════════════ -->
 <h2>IX. The Security Gap Nobody Wants to Talk About</h2>
 
 <p>The Thoughtworks retreat flagged security as "the uncomfortable gap" in AI adoption. A small but worried group noted that security consistently gets deprioritised in the rush to deploy AI tools — and the data justifies that worry<a class="ref" href="#ref7">[7]</a>.</p>
 
-<p>Stack Overflow's analysis found AI-generated code exhibits security vulnerabilities at 1.5 to 2 times the rate of human-written code<a class="ref" href="#ref17">[17]</a>. Independent analyses estimate that up to 30% of AI-generated code snippets contain security issues — SQL injection, cross-site scripting, authentication bypass<a class="ref" href="#ref28">[28]</a>. AI-introduced vulnerabilities surviving in production repositories exceeded 110,000 by February 2026<a class="ref" href="#ref21">[21]</a>. The retreat participants specifically flagged that granting agents broad tool access — especially to email, which can enable password resets and account takeovers — represents a specific and immediate risk<a class="ref" href="#ref7">[7]</a>.</p>
+<p>Stack Overflow's analysis found AI-generated code exhibits security vulnerabilities at 1.5 to 2 times the rate of human-written code<a class="ref" href="#ref17">[17]</a>. Independent analyses estimate that up to 30% of AI-generated code snippets contain security issues — SQL injection, cross-site scripting, authentication bypass<a class="ref" href="#ref28">[28]</a>. The retreat participants specifically flagged that granting agents broad tool access — especially to email, which can enable password resets and account takeovers — represents a specific and immediate risk<a class="ref" href="#ref7">[7]</a>.</p>
 
-<p>The industry response is only beginning to catch up. In March 2026, the Linux Foundation announced a $12.5 million initiative — backed by Anthropic, AWS, GitHub, Google, Microsoft, and OpenAI — to address the open-source security crisis driven by AI-generated code<a class="ref" href="#ref30">[30]</a>. Amazon's 90-day safety reset was, in part, a security response: AI-assisted changes had been deployed to production without the review gates that would have caught privilege escalation and dependency-flow errors<a class="ref" href="#ref24">[24]</a>.</p>
+<p>In March 2026, the Linux Foundation announced a $12.5 million initiative — backed by Anthropic, AWS, GitHub, Google, Microsoft, and OpenAI — to address the open-source security crisis driven by AI-generated code<a class="ref" href="#ref30">[30]</a>. Amazon's 90-day safety reset was, in part, a security response: AI-assisted changes had been deployed to production without the review gates that would have caught privilege escalation and dependency-flow errors<a class="ref" href="#ref24">[24]</a>.</p>
 
-<p>Security is the domain where the "specification must carry the rigour" argument is most urgent and most consequential. A vague spec that omits rate limiting causes an email storm. A vague spec that omits authorisation checks causes a data breach. The specification-first approach isn't just about code quality — it's about encoding security constraints <em>before</em> the agent has a chance to omit them.</p>
+<p>Security is the domain where the "specification must carry the rigour" argument is most urgent. A vague spec that omits rate limiting causes an email storm. A vague spec that omits authorisation checks causes a data breach. The specification-first approach isn't just about code quality — it's about encoding security constraints <em>before</em> the agent has a chance to omit them.</p>
 
+
+<!-- ════════════════ PART X ════════════════ -->
 <h2>X. What Comes Next: The Unresolved Questions</h2>
 
 <p>Perhaps the most honest conclusion from the Thoughtworks retreat — attended by some of the sharpest minds in the software industry — was that nobody has it all figured out. Martin Fowler himself noted the remarkable level of uncertainty even among the most experienced practitioners<a class="ref" href="#ref15">[15]</a>.</p>
 
 <p>The questions that remain open are fundamental. If agents write all the code and teams stop reading it, how do developers maintain system comprehension? If career ladders were designed around coding proficiency, how do we recognise and reward supervisory engineering skills? If AI tools handle the inner loop and increasingly automate the outer loop, does the middle loop of human supervision become the <em>entire</em> job? And what happens to the Product Manager role — does it merge with engineering, or diverge further?<a class="ref" href="#ref9">[9]</a></p>
 
-<p>What <em>is</em> clear is the direction of travel. The companies that adapt will be those that invest in rigorous specifications before code generation, build knowledge graphs that capture institutional memory, create career paths that reward architectural thinking and supervisory skills, and resist the temptation to treat AI-generated productivity gains as a reason to cut headcount rather than raise quality.</p>
-
 <div class="pull-quote">
 <p>The work isn't disappearing. It's moving from execution to supervision. The bottleneck used to be typing code into a file. Now it's decision-making, verification, and specifying clear intent.</p>
 </div>
 
-<p>For individual developers, the message from every data point examined is consistent: the ability to write code is becoming table stakes. The differentiating skill is the ability to think about systems, write unambiguous specifications, design test suites that constrain AI behaviour, and maintain the institutional knowledge that no agent can acquire on its own. In a sense, the profession is returning to its roots — to the discipline and rigour that Dijkstra called for in 1968, that Kernighan and Ritchie embodied in their elegant handbook, and that the best engineers have always practised, regardless of whatever paradigm was fashionable.</p>
-
-<p>The tools have changed. The code is being written by machines. But the craft — the part that was always the hardest — remains stubbornly, irreducibly human.</p>
+<p>For individual developers, the message from every data point examined is consistent: the ability to write code is becoming table stakes. The differentiating skill is the ability to think about systems, write unambiguous specifications, design test suites that constrain AI behaviour, and maintain the institutional knowledge that no agent can acquire on its own.</p>
 
 
-<!-- ════════════════ PART X: PLAYBOOK ════════════════ -->
+<!-- ════════════════ PART XI — PLAYBOOK ════════════════ -->
 <h2>XI. A Supervisory Automation Playbook: Six Mitigations You Can Build Now</h2>
 
-<p>Diagnosis without prescription is just anxiety. The preceding sections mapped five interlocking failures: vague specifications causing production disasters, engineering rigour with nowhere to go, seniors drowning in review, teams losing comprehension of their own systems, and tribal knowledge evaporating when the one person who understood a system leaves or sleeps. Each of these failures has a structural solution — not in writing more code, but in building a <em>supervisory automation layer around the coding agents themselves</em>.</p>
-
-<p>The answer is not to automate coding harder. It is to automate supervision better.</p>
+<p>Diagnosis without prescription is just anxiety. The preceding sections mapped five interlocking failures: vague specifications causing production disasters, engineering rigour with nowhere to go, seniors drowning in review, teams losing comprehension of their own systems, and tribal knowledge evaporating. Each of these failures has a structural solution — not in writing more code, but in building a <em>supervisory automation layer around the coding agents themselves</em>.</p>
 
 <h3>The Three-Layer Model</h3>
 
-<p>Think of the AI-native development workflow as three distinct layers. Each layer has a different purpose, and each one is currently under-invested compared to the code generation layer that gets all the attention.</p>
-
 <div class="layers-grid">
-
 <div class="layer-card upstream">
 <h5>Layer 1</h5>
 <h4>Upstream Control — Before Code Exists</h4>
 <p>Create structured artefacts that <em>constrain</em> what the agent will generate: clarified assumptions, decision tables, edge cases, rate limits, idempotency requirements, security constraints, test charters. This is where the specification becomes the product. The goal is to make it impossible for an AI agent to misinterpret intent — because the intent has been formally decomposed before a single line of code is requested.</p>
 </div>
-
 <div class="layer-card middle">
 <h5>Layer 2</h5>
 <h4>Middle-Loop Supervision — While Code Is Being Reviewed</h4>
 <p>Automate the review and validation work that humans can no longer keep up with: adversarial testing, architecture conformance checks, risk-based review routing, semantic diff analysis. The goal is to scale review from O(lines of code) to O(risky decisions) — ensuring that senior engineers spend their attention budget on the parts that actually matter, not on reading thousands of lines of generated boilerplate.</p>
 </div>
-
 <div class="layer-card memory">
 <h5>Layer 3</h5>
 <h4>Operational Memory — After Merge or Incident</h4>
 <p>Externalise what was learned into durable, searchable, reusable knowledge: learning briefs, post-mortem records structured for machine retrieval, runbooks, architecture decision records. This is how you build the "agent subconscious" that the Thoughtworks retreat called for<a class="ref" href="#ref7">[7]</a> — and how you prevent teams from becoming strangers in their own codebase.</p>
 </div>
-
 </div>
 
 <h3>Six Automations, Phased for Impact</h3>
 
-<p>Not all mitigations carry equal weight. The following six automations are ordered by value: the first three address the most critical failures immediately; the second three compound their effect. Each one maps directly to a problem expounded in this article.</p>
-
 <div class="auto-grid">
-
 <div class="auto-card phase1">
 <span class="auto-num">01</span>
 <h5>The Spec Clarifier</h5>
@@ -1236,7 +1242,6 @@ blockquote cite {
 <p>An agent that refuses to write code. Given a feature request or user story, it produces a structured implementation specification: clarified assumptions, unknowns, constraints, state transitions, failure modes, rate limits, security concerns, observability requirements, and acceptance criteria. The output is a document that makes it impossible for a coding agent to fill in the gaps with hallucinations.</p>
 <p>This is the single most important missing automation in most AI-native teams. It operationalises the article's central insight: the specification is now the product<a class="ref" href="#ref1">[1]</a>.</p>
 </div>
-
 <div class="auto-card phase1">
 <span class="auto-num">02</span>
 <h5>The Test Oracle</h5>
@@ -1244,15 +1249,13 @@ blockquote cite {
 <p>An agent that generates tests <em>before or alongside</em> code, never after. It derives acceptance tests from the specification, generates negative tests and abuse cases, proposes contract tests, and flags missing observability assertions. Critically, it blocks the anti-pattern that Molist and the Thoughtworks retreat both identified: agents writing code, then writing matching broken tests to validate it<a class="ref" href="#ref1">[1]</a><a class="ref" href="#ref8">[8]</a>.</p>
 <p>This is TDD as prompt engineering — the tests <em>are</em> the constraint that shapes the agent's output.</p>
 </div>
-
 <div class="auto-card phase1">
 <span class="auto-num">03</span>
 <h5>The Architecture Guardian</h5>
 <div class="auto-solves">Solves → Parallel AI streams drifting apart</div>
-<p>An agent that checks whether generated changes violate established patterns, cross bounded contexts, move business logic into the wrong layer, duplicate functionality, or contradict Architecture Decision Records. When multiple agents are generating code in parallel — which is now routine — this is the automation that prevents architectural coherence from degrading silently.</p>
-<p>It answers the question that no individual coding agent can answer: <em>does this change fit into the whole?</em></p>
+<p>An agent that checks whether generated changes violate established patterns, cross bounded contexts, move business logic into the wrong layer, duplicate functionality, or contradict Architecture Decision Records. When multiple agents are generating code in parallel, this is the automation that prevents architectural coherence from degrading silently.</p>
+<p>It answers the question no individual coding agent can answer: <em>does this change fit into the whole?</em></p>
 </div>
-
 <div class="auto-card phase2">
 <span class="auto-num">04</span>
 <h5>The Angry Reviewer</h5>
@@ -1260,417 +1263,164 @@ blockquote cite {
 <p>A deliberately adversarial agent. Where normal AI says "looks good," this one assumes the solution is unsafe and tries to break it. It probes for production failure modes, missing rate limits, retry storms, authorisation gaps, stale caches, eventual consistency mismatches, broken rollback paths, and hidden performance cliffs.</p>
 <p>This directly implements the retreat's "angry agent" principle<a class="ref" href="#ref1">[1]</a> — and it is the mitigation that prevents the 2 a.m. outage caused by everyone agreeing that the code works.</p>
 </div>
-
 <div class="auto-card phase2">
 <span class="auto-num">05</span>
 <h5>The Review Load Balancer</h5>
 <div class="auto-solves">Solves → Seniors drowning in review</div>
-<p>An agent that analyses each pull request's semantic diff and classifies changes by concern: behaviour changes, data model changes, security-sensitive changes, performance-critical paths. It tags hunks as routine (auto-approvable), reviewable (needs one pass), or mandatory (requires senior attention). It produces a "review-first" ordering so that the riskiest changes are reviewed first, and suggests which reviewer is best suited by expertise area.</p>
-<p>The effect is transformational: senior review time scales with <em>risk</em>, not with <em>lines of code</em>.</p>
+<p>An agent that analyses each pull request's semantic diff and classifies changes by concern: behaviour changes, data model changes, security-sensitive changes, performance-critical paths. It tags hunks as routine (auto-approvable), reviewable (needs one pass), or mandatory (requires senior attention). Senior review time scales with <em>risk</em>, not with <em>lines of code</em>.</p>
 </div>
-
 <div class="auto-card phase2">
 <span class="auto-num">06</span>
 <h5>The Learning Brief Generator</h5>
 <div class="auto-solves">Solves → Teams becoming strangers in their own codebase</div>
-<p>For every significant merge, an agent produces a mandatory learning artefact: what changed, why it changed, which system areas were touched, which invariants were preserved, surprising edge cases encountered, how to debug it in production, and what a future maintainer must know. The brief is AI-drafted but human-approved — the author must read and sign off, which forces at least one comprehension pass.</p>
-<p>This is how you fight the Pipeline Paradox. Over time, these briefs accumulate into a searchable body of institutional knowledge that grows more valuable with every merge — the "agent subconscious" built incrementally<a class="ref" href="#ref7">[7]</a>.</p>
+<p>For every significant merge, an agent produces a mandatory learning artefact: what changed, why it changed, which system areas were touched, which invariants were preserved, surprising edge cases encountered, how to debug it in production. The brief is AI-drafted but human-approved — the author must read and sign off, which forces at least one comprehension pass.</p>
+<p>This is how you fight the Pipeline Paradox. Over time, these briefs accumulate into the "agent subconscious" built incrementally<a class="ref" href="#ref7">[7]</a>.</p>
 </div>
-
 </div>
 
 <h3>Mapping Problems to Solutions</h3>
 
-<p>Every problem identified in this article has a corresponding mitigation in the playbook. The following table makes the mapping explicit:</p>
-
 <div class="solution-map">
 <table>
 <tr>
-  <th style="width:45%;">Problem (from article)</th>
+  <th style="width:50%;">Problem (from article)</th>
   <th>Mitigation</th>
 </tr>
-<tr>
-  <td>Vague specifications cause production disasters (§II)</td>
-  <td><span class="pill green">Spec Clarifier</span></td>
-</tr>
-<tr>
-  <td>Engineering rigour has nowhere to go (§II)</td>
-  <td><span class="pill green">Spec Clarifier</span> <span class="pill green">Test Oracle</span></td>
-</tr>
-<tr>
-  <td>AI writes broken tests for broken code (§II)</td>
-  <td><span class="pill green">Test Oracle</span></td>
-</tr>
-<tr>
-  <td>Parallel AI streams erode architectural coherence (§III)</td>
-  <td><span class="pill green">Architecture Guardian</span></td>
-</tr>
-<tr>
-  <td>Senior engineers drowning in review (§IV)</td>
-  <td><span class="pill gold">Review Load Balancer</span></td>
-</tr>
-<tr>
-  <td>Juniors ship without deep understanding (§IV)</td>
-  <td><span class="pill gold">Learning Brief</span></td>
-</tr>
-<tr>
-  <td>Pipeline Paradox — no path to senior expertise (§IV)</td>
-  <td><span class="pill gold">Learning Brief</span> <span class="pill green">Architecture Guardian</span></td>
-</tr>
-<tr>
-  <td>2 a.m. tribal knowledge failures (§V)</td>
-  <td><span class="pill gold">Learning Brief</span> <span class="pill gold">Angry Reviewer</span></td>
-</tr>
-<tr>
-  <td>Helpful AI becomes yes-man in incidents (§V)</td>
-  <td><span class="pill gold">Angry Reviewer</span></td>
-</tr>
-<tr>
-  <td>Cognitive overload and decision fatigue (§VIII)</td>
-  <td><span class="pill gold">Review Load Balancer</span> <span class="pill green">Spec Clarifier</span></td>
-</tr>
-<tr>
-  <td>Security vulnerabilities at 1.5–2× human rate (§IX)</td>
-  <td><span class="pill green">Spec Clarifier</span> <span class="pill green">Test Oracle</span> <span class="pill gold">Angry Reviewer</span></td>
-</tr>
+<tr><td>Vague specifications cause production disasters (§II)</td><td><span class="pill green">Spec Clarifier</span></td></tr>
+<tr><td>Engineering rigour has nowhere to go (§II)</td><td><span class="pill green">Spec Clarifier</span> <span class="pill green">Test Oracle</span></td></tr>
+<tr><td>AI writes broken tests for broken code (§II)</td><td><span class="pill green">Test Oracle</span></td></tr>
+<tr><td>Parallel AI streams erode architectural coherence (§III)</td><td><span class="pill green">Architecture Guardian</span></td></tr>
+<tr><td>Senior engineers drowning in review (§IV)</td><td><span class="pill gold">Review Load Balancer</span></td></tr>
+<tr><td>Juniors ship without deep understanding (§IV)</td><td><span class="pill gold">Learning Brief</span></td></tr>
+<tr><td>Pipeline Paradox — no path to senior expertise (§IV)</td><td><span class="pill gold">Learning Brief</span> <span class="pill green">Architecture Guardian</span></td></tr>
+<tr><td>2 a.m. tribal knowledge failures (§V)</td><td><span class="pill gold">Learning Brief</span> <span class="pill gold">Angry Reviewer</span></td></tr>
+<tr><td>Helpful AI becomes yes-man in incidents (§V)</td><td><span class="pill gold">Angry Reviewer</span></td></tr>
+<tr><td>Cognitive overload and decision fatigue (§VIII)</td><td><span class="pill gold">Review Load Balancer</span> <span class="pill green">Spec Clarifier</span></td></tr>
+<tr><td>Security vulnerabilities at 1.5–2× human rate (§IX)</td><td><span class="pill green">Spec Clarifier</span> <span class="pill green">Test Oracle</span> <span class="pill gold">Angry Reviewer</span></td></tr>
 </table>
 </div>
 
 <h3>Implementation Principles</h3>
 
-<p>The six automations above are not standalone tools — they form a system. That system works only if it follows a set of design principles that prevent the supervisory layer from becoming yet another source of noise and cognitive burden:</p>
-
 <div class="principles-strip">
-
-<div class="principle-tile">
-<div class="p-num">I</div>
-<h6>Specification Is Product</h6>
-<p>Everything slopes toward making the spec the artefact that is reviewed carefully, once, then used to constrain all downstream work.</p>
+<div class="principle-tile"><div class="p-num">I</div><h6>Specification Is Product</h6><p>Everything slopes toward making the spec the artefact that is reviewed carefully, once, then used to constrain all downstream work.</p></div>
+<div class="principle-tile"><div class="p-num">II</div><h6>Automate Supervision, Not Output</h6><p>The job is not to generate more code. It is to review what is generated more carefully with less human cognitive load.</p></div>
+<div class="principle-tile"><div class="p-num">III</div><h6>Trust Boundaries Are Explicit</h6><p>Where AI operates autonomously is a decision, not an accident. Green for safe automation, yellow for human-approved, red for human-led only.</p></div>
+<div class="principle-tile"><div class="p-num">IV</div><h6>Tribal Knowledge Dies With Its Owner</h6><p>Every decision, failure, and surprise must be captured in structured, searchable form. The system is the memory — not any individual.</p></div>
+<div class="principle-tile"><div class="p-num">V</div><h6>Adversarial Review Is Non-Optional</h6><p>Systems where helpful AI becomes yes-man AI fail in production. Adversarial challenge must be built into the workflow, not bolted on.</p></div>
+<div class="principle-tile"><div class="p-num">VI</div><h6>Start Non-Destructive</h6><p>New automations should report findings before applying changes. Evaluate signal quality first, grant write permissions only after trust is established.</p></div>
 </div>
 
-<div class="principle-tile">
-<div class="p-num">II</div>
-<h6>Automate Supervision, Not Output</h6>
-<p>The job is not to generate more code. It is to review what is generated more carefully with less human cognitive load.</p>
-</div>
-
-<div class="principle-tile">
-<div class="p-num">III</div>
-<h6>Trust Boundaries Are Explicit</h6>
-<p>Where AI operates autonomously is a decision, not an accident. Green for safe automation, yellow for human-approved, red for human-led only.</p>
-</div>
-
-<div class="principle-tile">
-<div class="p-num">IV</div>
-<h6>Tribal Knowledge Dies With Its Owner</h6>
-<p>Every decision, failure, and surprise must be captured in structured, searchable form. The system is the memory — not any individual.</p>
-</div>
-
-<div class="principle-tile">
-<div class="p-num">V</div>
-<h6>Adversarial Review Is Non-Optional</h6>
-<p>Systems where helpful AI becomes yes-man AI fail in production. Adversarial challenge must be built into the workflow, not bolted on.</p>
-</div>
-
-<div class="principle-tile">
-<div class="p-num">VI</div>
-<h6>Start Non-Destructive</h6>
-<p>New automations should report findings before applying changes. Evaluate signal quality first, grant write permissions only after trust is established.</p>
-</div>
-
-</div>
-
-<h3>These Are Not Speculative — Parts Already Exist</h3>
-
-<p>Several of these automations already have commercial or open-source implementations. CodeRabbit — now the most-installed AI app on GitHub and GitLab — provides risk-classified PR review with severity tagging, achieving 46% accuracy in detecting real-world runtime bugs<a class="ref" href="#ref31">[31]</a>. Greptile builds full-codebase relationship graphs and traces cross-file dependencies during review, acting as a de facto Architecture Guardian. GitHub's Spec Kit implements the Spec Clarifier workflow as a four-phase open-source toolkit<a class="ref" href="#ref19">[19]</a>. Qodo generates tests alongside review, functioning as a Test Oracle. The DORA 2025 Report found 42–48% improvement in bug detection with AI code review tools<a class="ref" href="#ref31">[31]</a>.</p>
-
-<p>The strategic insight is not that each of these tools needs to be built from scratch — it is that they need to be <em>integrated into a coherent supervisory layer</em>. A Review Load Balancer without a Spec Clarifier upstream just triages bad code faster. An Angry Reviewer without an Architecture Guardian catches bugs but not architectural drift. The value is in the system, not in the individual components.</p>
-
-<h3>The Strategic Insight</h3>
-
-<p>The reflexive response to the AI-native transition is to invest in better coding agents — faster generation, smarter autocomplete, larger context windows. That reflex is wrong, or at least insufficient. The bottleneck is no longer code generation. It is everything <em>around</em> code generation: the specification quality that shapes what is generated, the review process that validates what was generated, and the institutional memory that prevents the same mistakes from recurring.</p>
-
-<blockquote>
-Do not automate coding harder first. Automate supervision better first. That is the real answer the industry's own evidence is pointing toward.
-</blockquote>
-
-<p>The six automations in this playbook are not speculative. They are derived from patterns already emerging in teams that have spent six months or more operating with AI agents at scale<a class="ref" href="#ref1">[1]</a><a class="ref" href="#ref7">[7]</a><a class="ref" href="#ref9">[9]</a>. The Thoughtworks retreat articulated the principles; practitioners like Molist are living them. What remains is to operationalise them — to turn the diagnosis into infrastructure, and the infrastructure into daily practice.</p>
-
-<p>The companies that build this supervisory layer first will not just write software faster. They will write software they can still understand, maintain, debug, and trust — at 2 a.m., under pressure, months after the agent that wrote it has long forgotten what it did.</p>
+<blockquote>Do not automate coding harder first. Automate supervision better first. That is the real answer the industry's own evidence is pointing toward.</blockquote>
 
 
-<!-- ════════════════ PART XII: THE FUTURE ════════════════ -->
+<!-- ════════════════ PART XII ════════════════ -->
 <h2>XII. The Abstraction Ladder: What Comes After Agents, and What Comes After That</h2>
 
-<p>There is a pattern hidden in the history of this article that we haven't named yet. Look at the sequence: in the 1960s, the scarce skill was writing machine code. In the 1980s, it was writing structured programs. In the 2000s, it was designing object-oriented systems. In 2023, the hot skill was prompt engineering — everyone was told to learn it. By 2025, the conversation had moved to agent creation. By 2026, the leading edge has already shifted again, toward specification design and outcome orchestration<a class="ref" href="#ref35">[35]</a><a class="ref" href="#ref36">[36]</a>.</p>
-
-<p>Each rung on this ladder represents a higher level of abstraction. And each rung makes the previous one obsolete as a differentiating skill faster than the last. The half-life of "the skill that matters" is collapsing.</p>
+<p>There is a pattern hidden in the history of this article that we haven't named yet. Each rung on this ladder represents a higher level of abstraction. And each rung makes the previous one obsolete as a differentiating skill faster than the last. The half-life of "the skill that matters" is collapsing.</p>
 
 <div class="ladder-container">
 <h4>The Abstraction Ladder: From Bytes to Outcomes</h4>
-
-<div class="ladder-step">
-  <div class="ladder-era">1950s–60s</div>
-  <div class="ladder-bar l1"><span class="ladder-label">Machine Code &amp; Assembly</span><span class="ladder-detail">Human writes every byte</span></div>
-</div>
-<div class="ladder-step">
-  <div class="ladder-era">1970s–90s</div>
-  <div class="ladder-bar l2"><span class="ladder-label">Structured &amp; OOP Programming</span><span class="ladder-detail">Compilers handle the bytes</span></div>
-</div>
-<div class="ladder-step">
-  <div class="ladder-era">2000s–10s</div>
-  <div class="ladder-bar l3"><span class="ladder-label">Frameworks &amp; Cloud Platforms</span><span class="ladder-detail">Platforms handle infrastructure</span></div>
-</div>
-<div class="ladder-step">
-  <div class="ladder-era">2023–24</div>
-  <div class="ladder-bar l4"><span class="ladder-label">Prompt Engineering</span><span class="ladder-detail">Human writes instructions for AI</span></div>
-</div>
-<div class="ladder-step">
-  <div class="ladder-era">2025</div>
-  <div class="ladder-bar l5"><span class="ladder-label">Agent Creation &amp; Orchestration</span><span class="ladder-detail">Human designs multi-agent systems</span></div>
-</div>
-<div class="ladder-step">
-  <div class="ladder-era">2026</div>
-  <div class="ladder-bar l6"><span class="ladder-label">Spec-Driven &amp; Outcome Engineering</span><span class="ladder-detail">Human specifies intent; agents self-organise</span></div>
-</div>
-<div class="ladder-step">
-  <div class="ladder-era">2027–?</div>
-  <div class="ladder-bar l7"><span class="ladder-label">? — Agents Create Agents</span><span class="ladder-detail">Human specifies the destination; AI builds the vehicle</span></div>
-</div>
+<div class="ladder-step"><div class="ladder-era">1950s–60s</div><div class="ladder-bar l1"><span class="ladder-label">Machine Code &amp; Assembly</span><span class="ladder-detail">Human writes every byte</span></div></div>
+<div class="ladder-step"><div class="ladder-era">1970s–90s</div><div class="ladder-bar l2"><span class="ladder-label">Structured &amp; OOP Programming</span><span class="ladder-detail">Compilers handle the bytes</span></div></div>
+<div class="ladder-step"><div class="ladder-era">2000s–10s</div><div class="ladder-bar l3"><span class="ladder-label">Frameworks &amp; Cloud Platforms</span><span class="ladder-detail">Platforms handle infrastructure</span></div></div>
+<div class="ladder-step"><div class="ladder-era">2023–24</div><div class="ladder-bar l4"><span class="ladder-label">Prompt Engineering</span><span class="ladder-detail">Human writes instructions for AI</span></div></div>
+<div class="ladder-step"><div class="ladder-era">2025</div><div class="ladder-bar l5"><span class="ladder-label">Agent Creation &amp; Orchestration</span><span class="ladder-detail">Human designs multi-agent systems</span></div></div>
+<div class="ladder-step"><div class="ladder-era">2026</div><div class="ladder-bar l6"><span class="ladder-label">Spec-Driven &amp; Outcome Engineering</span><span class="ladder-detail">Human specifies intent; agents self-organise</span></div></div>
+<div class="ladder-step"><div class="ladder-era">2027–?</div><div class="ladder-bar l7"><span class="ladder-label">? — Agents Create Agents</span><span class="ladder-detail">Human specifies the destination; AI builds the vehicle</span></div></div>
 </div>
 
 <h3>The Collapsing Half-Life of the Relevant Skill</h3>
 
-<p>What makes this transition different from every previous paradigm shift is the speed. Learning C from K&amp;R in 1995 was investing in a skill that remained relevant for a decade or more. Learning React in 2015 gave you five to seven productive years. Learning prompt engineering in 2023 gave you perhaps eighteen months before agent orchestration displaced it as the differentiating competence. Agent creation, the hot skill of 2025, is already being subsumed by specification-driven development and outcome engineering in 2026<a class="ref" href="#ref35">[35]</a><a class="ref" href="#ref37">[37]</a>.</p>
+<p>What makes this transition different from every previous paradigm shift is the speed. Learning C from K&amp;R gave you a skill that remained relevant for a decade or more. Learning React in 2015 gave you five to seven productive years. Learning prompt engineering in 2023 gave you perhaps eighteen months before agent orchestration displaced it. Agent creation, the hot skill of 2025, is already being subsumed by specification-driven development and outcome engineering in 2026<a class="ref" href="#ref35">[35]</a><a class="ref" href="#ref37">[37]</a>.</p>
 
 <div class="halflife-chart">
 <h4>Approximate Relevance Half-Life of Technical Skills</h4>
-<div class="hl-row">
-  <div class="hl-label">Assembly (1960s)</div>
-  <div class="hl-track"><div class="hl-fill" style="width:95%;background:linear-gradient(90deg,#7f8c8d,#95a5a6);">~20 years</div></div>
-</div>
-<div class="hl-row">
-  <div class="hl-label">C / Structured (1980s)</div>
-  <div class="hl-track"><div class="hl-fill" style="width:75%;background:linear-gradient(90deg,#6c5ce7,#a29bfe);">~15 years</div></div>
-</div>
-<div class="hl-row">
-  <div class="hl-label">Java / OOP (1990s)</div>
-  <div class="hl-track"><div class="hl-fill" style="width:55%;background:linear-gradient(90deg,#2c3e50,#3498db);">~10 years</div></div>
-</div>
-<div class="hl-row">
-  <div class="hl-label">React / Modern JS (2015)</div>
-  <div class="hl-track"><div class="hl-fill" style="width:35%;background:linear-gradient(90deg,#27ae60,#2ecc71);">~5–7 years</div></div>
-</div>
-<div class="hl-row">
-  <div class="hl-label">Prompt Engineering (2023)</div>
-  <div class="hl-track"><div class="hl-fill" style="width:15%;background:linear-gradient(90deg,#d4a843,#f39c12);">~18 months</div></div>
-</div>
-<div class="hl-row">
-  <div class="hl-label">Agent Creation (2025)</div>
-  <div class="hl-track"><div class="hl-fill" style="width:9%;background:linear-gradient(90deg,#c0392b,#e74c3c);">~12 mo?</div></div>
-</div>
+<p class="chart-caveat">Illustrative only — boundary dates are subjective judgements, not measured data. See methodology note below.</p>
+<div class="hl-row"><div class="hl-label">Assembly (1960s)</div><div class="hl-track"><div class="hl-fill" style="width:95%;background:linear-gradient(90deg,#7f8c8d,#95a5a6);">~20 years</div></div></div>
+<div class="hl-row"><div class="hl-label">C / Structured (1980s)</div><div class="hl-track"><div class="hl-fill" style="width:75%;background:linear-gradient(90deg,#6c5ce7,#a29bfe);">~15 years</div></div></div>
+<div class="hl-row"><div class="hl-label">Java / OOP (1990s)</div><div class="hl-track"><div class="hl-fill" style="width:55%;background:linear-gradient(90deg,#2c3e50,#3498db);">~10 years</div></div></div>
+<div class="hl-row"><div class="hl-label">React / Modern JS (2015)</div><div class="hl-track"><div class="hl-fill" style="width:35%;background:linear-gradient(90deg,#27ae60,#2ecc71);">~5–7 years</div></div></div>
+<div class="hl-row"><div class="hl-label">Prompt Engineering (2023)</div><div class="hl-track"><div class="hl-fill" style="width:15%;background:linear-gradient(90deg,#d4a843,#f39c12);">~18 months</div></div></div>
+<div class="hl-row"><div class="hl-label">Agent Creation (2025)</div><div class="hl-track"><div class="hl-fill" style="width:9%;background:linear-gradient(90deg,#c0392b,#e74c3c);">~12 mo?</div></div></div>
 </div>
 
-<p>The chart above measures how long each skill remained the <em>differentiating</em> competence — the thing that separated the productive practitioner from the rest. Assembly didn't disappear in 1975, just as C hasn't disappeared today. But it stopped being the skill employers hired for, the skill that defined career trajectories, the skill that justified educational investment. That distinction matters enormously for the question of whether institutions can keep up.</p>
+<details class="methodology">
+<summary>Methodology: how these dates were estimated — and why you should be sceptical of the numbers</summary>
+<p>Each skill window is anchored to two subjectively chosen events: the moment the skill became the <em>primary differentiating competence</em> for professional employment (start), and the moment it was displaced by a successor (end). The skill doesn't disappear at the end date — C is still written today — but it ceases to be what separates competitive candidates from the field.</p>
+<p><strong>Important caveat:</strong> These are the author's judgements about historical boundaries, not measured data. Different reasonable choices of anchor event would produce different durations. What is robust is the <em>directional pattern</em> of compression: shifting any individual boundary by two years in either direction does not change the conclusion that skill windows are shrinking. What is <em>not</em> robust is treating the specific figures — 20 years, 15 years, 18 months — as empirical measurements. They are illustrations of a qualitative argument. Read the chart accordingly.</p>
+<table>
+<tr><th>Skill</th><th>Start anchor</th><th>End anchor</th><th>Window</th></tr>
+<tr><td>Assembly</td><td>Mid-1950s: commercial computers require hand-coded machine instructions</td><td>~1975: C and structured languages adopted in industry; UNIX rewritten in C (1973)</td><td>~20 yr</td></tr>
+<tr><td>C / Structured</td><td>1972: C created at Bell Labs; K&amp;R published 1978<a class="ref" href="#ref3">[3]</a></td><td>~1990: C++ and OOP become mainstream hiring criteria</td><td>~18 yr</td></tr>
+<tr><td>Java / OOP</td><td>1995: Java released; OOP becomes dominant paradigm</td><td>~2008: web frameworks and cloud platforms shift demand</td><td>~13 yr</td></tr>
+<tr><td>React / Modern JS</td><td>2015: React adoption reaches critical mass</td><td>~2022: AI coding assistants begin to displace framework mastery as differentiator</td><td>~7 yr</td></tr>
+<tr><td>Prompt engineering</td><td>2023: ChatGPT adoption creates demand for prompt design as a named skill</td><td>Mid-2024: multi-agent tools displace prompt craft as differentiator<a class="ref" href="#ref36">[36]</a></td><td>~18 mo</td></tr>
+<tr><td>Agent creation</td><td>2025: agent orchestration becomes primary hiring differentiator<a class="ref" href="#ref36">[36]</a><a class="ref" href="#ref37">[37]</a></td><td>~2026: spec-driven and outcome engineering emerge<a class="ref" href="#ref19">[19]</a><a class="ref" href="#ref20">[20]</a><a class="ref" href="#ref35">[35]</a></td><td>~12 mo (est.)</td></tr>
+</table>
+</details>
 
 <div class="interval-chart">
 <h4>The education gap: skill windows vs. learning cycles</h4>
-
-<div class="iv-section-label">Skill relevance windows</div>
-
-<div class="iv-row">
-  <div class="iv-label"><strong>Assembly</strong><br>1955→1975</div>
-  <div class="iv-track"><div class="iv-fill" style="width:95%;background:linear-gradient(90deg,#7f8c8d,#95a5a6);">~20 years</div></div>
-</div>
-<div class="iv-row">
-  <div class="iv-label"><strong>C / Structured</strong><br>1972→1990</div>
-  <div class="iv-track"><div class="iv-fill" style="width:70%;background:linear-gradient(90deg,#6c5ce7,#a29bfe);">~18 years</div></div>
-</div>
-<div class="iv-row">
-  <div class="iv-label"><strong>Java / OOP</strong><br>1995→2008</div>
-  <div class="iv-track"><div class="iv-fill" style="width:52%;background:linear-gradient(90deg,#2c3e50,#3498db);">~13 years</div></div>
-</div>
-<div class="iv-row">
-  <div class="iv-label"><strong>React / Modern JS</strong><br>2015→2022</div>
-  <div class="iv-track"><div class="iv-fill" style="width:30%;background:linear-gradient(90deg,#27ae60,#2ecc71);">~7 years</div></div>
-</div>
-<div class="iv-row">
-  <div class="iv-label"><strong>Prompt Eng.</strong><br>2023→mid-2024</div>
-  <div class="iv-track"><div class="iv-fill" style="width:10%;background:linear-gradient(90deg,#d4a843,#f39c12);">~18 mo</div></div>
-</div>
-<div class="iv-row">
-  <div class="iv-label"><strong>Agent Creation</strong><br>2025→2026</div>
-  <div class="iv-track"><div class="iv-fill" style="width:6%;background:linear-gradient(90deg,#c0392b,#e74c3c);">~12 mo</div></div>
-</div>
-
+<div class="iv-section-label">Skill relevance windows (illustrative — see methodology)</div>
+<div class="iv-row"><div class="iv-label"><strong>Assembly</strong><br>1955→1975</div><div class="iv-track"><div class="iv-fill" style="width:95%;background:linear-gradient(90deg,#7f8c8d,#95a5a6);">~20 years</div></div></div>
+<div class="iv-row"><div class="iv-label"><strong>C / Structured</strong><br>1972→1990</div><div class="iv-track"><div class="iv-fill" style="width:70%;background:linear-gradient(90deg,#6c5ce7,#a29bfe);">~18 years</div></div></div>
+<div class="iv-row"><div class="iv-label"><strong>Java / OOP</strong><br>1995→2008</div><div class="iv-track"><div class="iv-fill" style="width:52%;background:linear-gradient(90deg,#2c3e50,#3498db);">~13 years</div></div></div>
+<div class="iv-row"><div class="iv-label"><strong>React / Modern JS</strong><br>2015→2022</div><div class="iv-track"><div class="iv-fill" style="width:30%;background:linear-gradient(90deg,#27ae60,#2ecc71);">~7 years</div></div></div>
+<div class="iv-row"><div class="iv-label"><strong>Prompt Eng.</strong><br>2023→mid-2024</div><div class="iv-track"><div class="iv-fill" style="width:10%;background:linear-gradient(90deg,#d4a843,#f39c12);">~18 mo</div></div></div>
+<div class="iv-row"><div class="iv-label"><strong>Agent Creation</strong><br>2025→2026</div><div class="iv-track"><div class="iv-fill" style="width:6%;background:linear-gradient(90deg,#c0392b,#e74c3c);">~12 mo</div></div></div>
 <hr class="iv-divider">
 <div class="iv-section-label">Education &amp; training cycles (for comparison)</div>
-
-<div class="iv-row">
-  <div class="iv-label"><strong>University degree</strong><br>(BSc Computer Science)</div>
-  <div class="iv-track"><div class="iv-fill" style="width:20%;background:linear-gradient(90deg,#c0392b,#e74c3c);">4 years</div></div>
+<div class="iv-row"><div class="iv-label"><strong>University degree</strong><br>(BSc Computer Science)</div><div class="iv-track"><div class="iv-fill" style="width:20%;background:linear-gradient(90deg,#c0392b,#e74c3c);">4 years</div></div></div>
+<div class="iv-row"><div class="iv-label"><strong>Master's programme</strong><br>(specialisation)</div><div class="iv-track"><div class="iv-fill" style="width:10%;background:linear-gradient(90deg,#993c1d,#d85a30);">2 years</div></div></div>
+<div class="iv-row"><div class="iv-label"><strong>Corporate retraining</strong><br>(avg. enterprise cycle)</div><div class="iv-track"><div class="iv-fill" style="width:8%;background:linear-gradient(90deg,#854f0b,#ba7517);">12–18 months</div></div></div>
+<div class="iv-row"><div class="iv-label"><strong>Intensive bootcamp</strong><br>(immersive programme)</div><div class="iv-track"><div class="iv-fill" style="width:4%;background:linear-gradient(90deg,#0f6e56,#1d9e75);">3–6 months</div></div></div>
 </div>
-<div class="iv-row">
-  <div class="iv-label"><strong>Master's programme</strong><br>(specialisation)</div>
-  <div class="iv-track"><div class="iv-fill" style="width:10%;background:linear-gradient(90deg,#993c1d,#d85a30);">2 years</div></div>
-</div>
-<div class="iv-row">
-  <div class="iv-label"><strong>Corporate retraining</strong><br>(avg. enterprise cycle)</div>
-  <div class="iv-track"><div class="iv-fill" style="width:8%;background:linear-gradient(90deg,#854f0b,#ba7517);">12–18 months</div></div>
-</div>
-<div class="iv-row">
-  <div class="iv-label"><strong>Intensive bootcamp</strong><br>(immersive programme)</div>
-  <div class="iv-track"><div class="iv-fill" style="width:4%;background:linear-gradient(90deg,#0f6e56,#1d9e75);">3–6 months</div></div>
-</div>
-</div>
-
-<p>The crossover is visible: after 2023, the dominant technical skill's relevance window becomes shorter than the time required to earn a university degree. By 2025, it approaches the length of a corporate retraining cycle. Only intensive bootcamps are still fast enough — but bootcamps, by their nature, teach tool usage rather than the systems thinking, ethical reasoning, and architectural judgement that survive automation. This creates a structural mismatch: the institutions best equipped to teach durable skills are too slow to teach timely ones, and the institutions fast enough to teach timely skills cannot teach durable ones.</p>
-
-<details class="methodology">
-<summary>Methodology: how these dates were estimated</summary>
-<p>Each skill window is anchored to two datable events: the moment the skill became the <em>primary differentiating competence</em> for professional employment (start), and the moment it was displaced by a successor as the hiring differentiator (end). The skill doesn't disappear at the end date — C is still written today — but it ceases to be what separates competitive candidates from the field. The dates below identify the anchoring events for each window.</p>
-
-<table>
-<tr><th>Skill</th><th>Start anchor</th><th>End anchor</th><th>Window</th></tr>
-<tr>
-  <td>Assembly</td>
-  <td>Mid-1950s: commercial computers require hand-coded machine instructions</td>
-  <td>~1975: C and structured languages adopted in industry; UNIX rewritten in C (1973)</td>
-  <td>~20 yr</td>
-</tr>
-<tr>
-  <td>C / Structured programming</td>
-  <td>1972: C created at Bell Labs; K&amp;R published 1978 <a class="ref" href="#ref3">[3]</a></td>
-  <td>~1990: C++ and OOP paradigm become mainstream hiring criteria</td>
-  <td>~18 yr</td>
-</tr>
-<tr>
-  <td>Java / OOP</td>
-  <td>1995: Java released; OOP becomes dominant industry paradigm</td>
-  <td>~2008: web frameworks (Rails, Django, Node.js) and cloud platforms shift demand</td>
-  <td>~13 yr</td>
-</tr>
-<tr>
-  <td>React / Modern JS</td>
-  <td>2015: React adoption reaches critical mass; modern JS framework era begins</td>
-  <td>~2022: AI coding assistants (Copilot launch, Jun 2022) begin to displace framework mastery as differentiator</td>
-  <td>~7 yr</td>
-</tr>
-<tr>
-  <td>Prompt engineering</td>
-  <td>2023: ChatGPT adoption (Nov 2022) creates demand for prompt design as a named skill</td>
-  <td>Mid-2024: multi-agent orchestration and autonomous coding tools (Claude Code, Cursor, Devin) displace prompt craft as differentiator <a class="ref" href="#ref36">[36]</a></td>
-  <td>~18 mo</td>
-</tr>
-<tr>
-  <td>Agent creation</td>
-  <td>2025: agent orchestration becomes the primary hiring differentiator <a class="ref" href="#ref36">[36]</a> <a class="ref" href="#ref37">[37]</a></td>
-  <td>~2026: spec-driven development and outcome engineering emerge <a class="ref" href="#ref19">[19]</a> <a class="ref" href="#ref20">[20]</a> <a class="ref" href="#ref35">[35]</a></td>
-  <td>~12 mo (est.)</td>
-</tr>
-</table>
-
-<p style="margin-top:12px;">All dates are approximate and debatable — especially the boundary between one era's decline and the next era's rise, which is always gradual rather than discrete. The pattern of compression, however, is robust regardless of how the individual boundaries are drawn: even shifting every date by two years in either direction does not change the conclusion that skill windows are shrinking faster than institutional learning cycles.</p>
-</details>
 
 <h3>The Higher Education Crisis Is Already Here</h3>
 
-<p>The numbers are stark. Enrolment in computer and information science programmes in the United States dropped 8.1% in the 2025–2026 school year — the steepest decline of any field of study, according to the National Student Clearinghouse<a class="ref" href="#ref38">[38]</a>. In Texas, admissions to computer science programmes are down roughly 20%<a class="ref" href="#ref39">[39]</a>. More than 60% of universities surveyed by the Computing Research Association reported declining CS enrolment<a class="ref" href="#ref38">[38]</a>. For the first time since the early 2010s, students and families are questioning whether a four-year computer science degree is a reliable path to employment<a class="ref" href="#ref40">[40]</a>.</p>
-
-<p>The reasons are interconnected. Entry-level coding tasks — precisely the skills a CS degree traditionally teaches first — are the most automatable by AI. Graduates with only fundamental coding skills face a shrinking job market for those skills specifically<a class="ref" href="#ref40">[40]</a>. Students are bypassing traditional CS degrees in favour of specialised AI engineering, data science, and cybersecurity programmes, or skipping degrees entirely for micro-credentials and intensive bootcamps that promise to keep pace with weekly tool changes<a class="ref" href="#ref40">[40]</a>.</p>
+<p>Enrolment in computer and information science programmes in the United States dropped 8.1% in the 2025–2026 school year — the steepest decline of any field of study, according to the National Student Clearinghouse<a class="ref" href="#ref38">[38]</a>. In Texas, admissions to computer science programmes are down roughly 20%<a class="ref" href="#ref39">[39]</a>. More than 60% of universities surveyed by the Computing Research Association reported declining CS enrolment<a class="ref" href="#ref38">[38]</a>.</p>
 
 <p>Higher Ed Dive's analysis captures the nuance: computer science is no longer a golden ticket, but it is far from obsolete<a class="ref" href="#ref41">[41]</a>. The problem isn't that CS knowledge is worthless — systems thinking, algorithms, data structures, and architectural reasoning remain foundational. The problem is that the traditional CS curriculum was optimised for producing people who write code, and the industry is rapidly shifting toward people who specify, supervise, and verify code that machines write.</p>
 
-<p>Universities are scrambling to respond. The University of Wisconsin–Madison created a standalone College of Computing and Artificial Intelligence, merging computer science, data science, information science, and statistics into a single strategic unit<a class="ref" href="#ref42">[42]</a>. Others are overhauling curricula to emphasise systems design, ethical reasoning, specification writing, and human-AI collaboration. But the structural challenge remains: a four-year curriculum takes years to redesign, and the skills it teaches may have a shorter shelf life than the degree itself.</p>
+<p>Universities are scrambling to respond. The University of Wisconsin–Madison created a standalone College of Computing and Artificial Intelligence, merging computer science, data science, information science, and statistics into a single strategic unit<a class="ref" href="#ref42">[42]</a>.</p>
 
 <div class="callout">
 <h5>The 2005 Lesson</h5>
-<p>We have been here before. Twenty years ago, schools across the United States replaced computer science with courses on how to use word processors and spreadsheet applications. The bet was that <em>using</em> the tools was the skill that mattered. It left an entire generation locked out of <em>creating</em> the technologies they relied on<a class="ref" href="#ref43">[43]</a>. The risk today is the mirror image: that we replace understanding systems with using AI tools, and produce a generation that can prompt machines but cannot reason about what those machines are doing or why they fail.</p>
+<p>Twenty years ago, schools across the United States replaced computer science with courses on how to use word processors and spreadsheet applications. The bet was that <em>using</em> the tools was the skill that mattered. It left an entire generation locked out of <em>creating</em> the technologies they relied on<a class="ref" href="#ref43">[43]</a>. The risk today is the mirror image: that we replace understanding systems with using AI tools, and produce a generation that can prompt machines but cannot reason about what those machines are doing or why they fail.</p>
 </div>
-
-<h3>Agents That Create Agents: The Next Rung</h3>
-
-<p>The pattern visible in the abstraction ladder points to a specific and near-term next step: agents that design, deploy, and supervise other agents. This is not speculative. Gartner forecasts that 15% of new applications will be auto-generated by AI without a human in the loop by 2027<a class="ref" href="#ref44">[44]</a>. IBM's Kevin Chung describes the most exciting coming shift as the democratisation of AI agent creation — moving beyond developers into the hands of everyday business users<a class="ref" href="#ref45">[45]</a>. CIO's analysis of 2026 engineering workflows describes a three-phase progression: from AI as assistant (discrete tasks), to AI as augmenter (multi-step workflows), to AI as autonomous operator (cross-domain decisions guided by business objectives)<a class="ref" href="#ref36">[36]</a>.</p>
-
-<p>When agents can create agents, the skill of agent creation itself becomes as automated as typing code already is. The human contribution moves one rung further up the ladder — not "how should the agent work?" but "what outcome should the system of agents achieve, and how will I know if it succeeded?"</p>
-
-<p>Cory Ondrejka — a technologist who helped build Second Life and later ran engineering at Facebook — has been writing about this under the label "Outcome Engineering": the practice of specifying verified outcomes rather than implementations or even specifications<a class="ref" href="#ref35">[35]</a>. His framing is provocative but precise: if compute is no longer the constraint and human bandwidth is no longer the bottleneck, then creation becomes a question of <em>intent clarity</em> and <em>outcome verification</em>. What would you build if nothing had to go on the backlog? What would you need to <em>prove</em> about what you built?</p>
 
 <h3>What Survives: The Engineer of the Future</h3>
 
-<p>If the abstraction ladder keeps rising — if the differentiating skill migrates from code to prompts to agents to specifications to outcomes — then what, if anything, is left for the human? Is there a rung where the ladder stops?</p>
-
-<p>The honest answer is: nobody knows. But the pattern from every previous transition suggests that the ladder doesn't eliminate humans — it elevates the <em>kind</em> of thinking that only humans can do. Each rung automates the <em>how</em> and pushes the human further toward the <em>why</em>, the <em>what if</em>, and the <em>should we</em>.</p>
-
-<p>If the engineer of the future exists — and I believe they will — they will not be defined by any specific tool, language, or framework. They will be defined by a set of capabilities that have been present at every rung of the ladder but have never been the <em>primary</em> job description:</p>
-
 <div class="comparison">
 <table>
-<tr>
-  <th>Capability</th>
-  <th>Why It Survives Automation</th>
-</tr>
-<tr>
-  <td><strong>Systems thinking</strong></td>
-  <td>Understanding how components interact, where emergent failures arise, and why a locally optimal solution is globally harmful. This is what the Amazon Kiro agent lacked.</td>
-</tr>
-<tr>
-  <td><strong>Problem decomposition</strong></td>
-  <td>Breaking an ambiguous real-world need into verifiable, bounded sub-problems. This is specification work — and it requires understanding the domain, not just the technology.</td>
-</tr>
-<tr>
-  <td><strong>Adversarial reasoning</strong></td>
-  <td>Asking "how will this fail?" and "who would abuse this?" AI agents are trained to be helpful. Humans are needed to be suspicious.</td>
-</tr>
-<tr>
-  <td><strong>Ethical and social judgement</strong></td>
-  <td>Deciding whether something <em>should</em> be built, not just whether it <em>can</em> be. Trade-offs between privacy, fairness, cost, speed, and safety are value judgements, not optimisation problems.</td>
-</tr>
-<tr>
-  <td><strong>Institutional memory and context</strong></td>
-  <td>Knowing <em>why</em> a system is the way it is — the history, the constraints, the politics, the customers. This is tribal knowledge, and it is the hardest thing to externalise.</td>
-</tr>
-<tr>
-  <td><strong>Accountability</strong></td>
-  <td>Someone must own the outcome. When an AI agent deletes a production database, someone must answer for it. Accountability is not a technical skill — it is a human one.</td>
-</tr>
+<tr><th>Capability</th><th>Why It Survives Automation</th></tr>
+<tr><td><strong>Systems thinking</strong></td><td>Understanding how components interact, where emergent failures arise, and why a locally optimal solution is globally harmful. This is what the Amazon Kiro agent reportedly lacked.</td></tr>
+<tr><td><strong>Problem decomposition</strong></td><td>Breaking an ambiguous real-world need into verifiable, bounded sub-problems. Requires understanding the domain, not just the technology.</td></tr>
+<tr><td><strong>Adversarial reasoning</strong></td><td>Asking "how will this fail?" and "who would abuse this?" AI agents are trained to be helpful. Humans are needed to be suspicious.</td></tr>
+<tr><td><strong>Ethical and social judgement</strong></td><td>Deciding whether something <em>should</em> be built. Trade-offs between privacy, fairness, cost, speed, and safety are value judgements, not optimisation problems.</td></tr>
+<tr><td><strong>Institutional memory and context</strong></td><td>Knowing <em>why</em> a system is the way it is — the history, the constraints, the politics, the customers.</td></tr>
+<tr><td><strong>Accountability</strong></td><td>Someone must own the outcome. When an AI agent deletes a production database, someone must answer for it. Accountability is not a technical skill — it is a human one.</td></tr>
 </table>
 </div>
-
-<p>Notice what is <em>not</em> on this list: writing code, writing prompts, designing agents, or mastering any specific tool. Those are all means. The capabilities above are ends — and they are the same capabilities that made the best engineers exceptional in 1982, in 1995, and in 2026. The tools that express them will keep changing. The capabilities themselves will not.</p>
-
-<h3>The Social Transformation Challenge</h3>
-
-<p>The collapse of skill half-lives poses a challenge that extends far beyond the technology industry. If the most relevant technical skill changes every twelve to eighteen months, then every institution designed around multi-year learning cycles is structurally misaligned with reality: four-year university degrees, three-year vocational programmes, annual corporate training budgets, government retraining initiatives that take years to fund and deploy.</p>
-
-<p>This is not a technology problem. It is a social infrastructure problem. The question is not "what programming language should universities teach?" — any answer will be outdated before the first cohort graduates. The question is: <em>how do we build educational systems that teach people to learn, unlearn, and relearn faster than the tools change?</em></p>
-
-<p>The universities that are already adapting — merging CS with ethics, statistics, and information science; emphasising systems thinking over syntax; building curricula around principles rather than frameworks<a class="ref" href="#ref42">[42]</a> — are pointing in the right direction. But even they face a structural tension: the accreditation and funding models of higher education assume stable curricula, while the industry demands continuous reinvention.</p>
-
-<p>For individual practitioners, the implication is both liberating and unsettling. The programmer who learned BASIC in 1982 and C in 1995 has already survived half a dozen paradigm shifts. Each one felt like the end of the world; each one turned out to be a transition to higher-order work. But the transitions are accelerating, and the time available to adapt is shrinking. The career of the future may not be a ladder at all — it may be a continuous process of climbing, discovering the rung beneath you has dissolved, and climbing again.</p>
 
 <div class="pull-quote">
 <p>The tools that express engineering thinking will keep changing every twelve months. The thinking itself — systems reasoning, adversarial judgement, ethical clarity, accountability — has not changed in fifty years and shows no signs of starting now.</p>
 </div>
 
-<p>Perhaps that is the most important lesson from the entire fifty-year arc this article has traced. From BASIC to C to Java to Agile to AI agents to whatever comes next — the constant is not the tool. The constant is the human who decides what to build, why to build it, and whether it was built well. The day that question is fully automated is the day we are having a very different conversation. We are not there yet. And the gap between "AI can generate code" and "AI can decide what should exist in the world" may turn out to be far wider than the current pace of progress suggests.</p>
 
-<!-- ════════════════ PART XIII: CRITICAL EVALUATION ════════════════ -->
+<!-- ════════════════ PART XIII — CRITICAL EVALUATION ════════════════ -->
 <h2>XIII. Critical Evaluation and Reformulated Thesis</h2>
 
-<p>A strong argument should survive direct scrutiny. The central claim of this essay was intentionally provocative: that software engineering rigour is migrating upstream in the age of coding agents. That claim remains persuasive. But some formulations in the original text were too absolute and benefit from tightening. This section integrates a formal rebuttal into the article itself, using the same evidentiary discipline applied elsewhere.</p>
+<p>A strong argument should survive direct scrutiny. The previous version of this section identified one rhetorical overreach — "the code became disposable" — and reformulated it. That was necessary but insufficient. This section goes further, examining the four structural weaknesses in the article's evidence architecture, stating explicitly what the article does and does not prove, and offering a reformulated thesis that is narrower, more falsifiable, and more honest.</p>
 
 <h3>What Holds Under Scrutiny</h3>
 
-<p>Three core propositions are strongly supported by the sources already cited:</p>
+<p>Three core propositions are strongly supported by convergent evidence from independent sources:</p>
 
 <div class="comparison">
 <table>
-<tr>
-  <th>Proposition</th>
-  <th>Why It Holds</th>
-  <th>Evidence Base</th>
-</tr>
+<tr><th>Proposition</th><th>Why It Holds</th><th>Evidence Base</th></tr>
 <tr>
   <td><strong>Ambiguity is more expensive in AI-assisted development</strong></td>
   <td>Fast generation amplifies underspecified intent into production risk.</td>
@@ -1683,54 +1433,99 @@ Do not automate coding harder first. Automate supervision better first. That is 
 </tr>
 <tr>
   <td><strong>Operational context and tribal knowledge remain hard constraints</strong></td>
-  <td>Models can generate plausible code while missing hidden production assumptions.</td>
+  <td>Models generate plausible code while missing hidden production assumptions.</td>
   <td>Incident case studies + enterprise survey findings<a class="ref" href="#ref18">[18]</a><a class="ref" href="#ref23">[23]</a><a class="ref" href="#ref24">[24]</a><a class="ref" href="#ref25">[25]</a><a class="ref" href="#ref32">[32]</a></td>
 </tr>
 </table>
 </div>
 
+<h3>The Four Structural Weaknesses</h3>
+
+<h3 style="font-size:20px;color:var(--accent);">Weakness 1 — Single-Team Load-Bearing: The Molist Dependency</h3>
+
+<p>The most specific and vivid evidence in this article — the 10× productivity figure, the email storm, the generational inversion, the "strangers in their own codebase" formulation — comes from a single practitioner's public account of a single twenty-person team<a class="ref" href="#ref1">[1]</a>. This is appropriate for generating a hypothesis. It is not sufficient to confirm one.</p>
+
+<p>Where Molist's observations are corroborated by the Thoughtworks retreat<a class="ref" href="#ref7">[7]</a><a class="ref" href="#ref9">[9]</a> or by independent data — quality surveys, BLS employment projections, developer sentiment data — the claims rest on solid ground. Where they are not independently corroborated, most notably the specific productivity multiplier, they should be treated as directional signals from an informed practitioner, not as measured facts. The article discloses this at point of first citation. Readers should apply the same scepticism throughout every section where Molist is the primary or sole source.</p>
+
+<h3 style="font-size:20px;color:var(--accent);">Weakness 2 — Vendor COI in Quality Data</h3>
+
+<p>The primary quantitative support for the claim that AI-generated code is lower quality comes from CodeRabbit<a class="ref" href="#ref16">[16]</a><a class="ref" href="#ref29">[29]</a><a class="ref" href="#ref31">[31]</a>, Lightrun<a class="ref" href="#ref18">[18]</a>, and Cortex<a class="ref" href="#ref34">[34]</a> — all vendors with commercial incentives to demonstrate problems with AI-generated code. This article discloses this at point of citation and distinguishes the credible directional finding (AI code introduces more quality issues, corroborated by Stack Overflow<a class="ref" href="#ref17">[17]</a> and academic research<a class="ref" href="#ref21">[21]</a>) from the precise multipliers (1.7×, 75%, 43%) that come from non-public, interested-party methodologies. Readers using these figures in business cases or policy arguments should seek independent replication before relying on the specific magnitudes.</p>
+
+<h3 style="font-size:20px;color:var(--accent);">Weakness 3 — The Amazon Kiro Incidents: Confirmed Governance Failure, Unverified Specifics</h3>
+
+<p>The Amazon incidents are the article's most dramatic evidence for the tribal-knowledge argument. What is confirmed by credible sources: Treadwell's public acknowledgement of unsafe practices<a class="ref" href="#ref25">[25]</a>, the 90-day safety reset<a class="ref" href="#ref24">[24]</a><a class="ref" href="#ref25">[25]</a>, and the general pattern of AI-assisted deployments causing serious production incidents<a class="ref" href="#ref32">[32]</a>. What is <em>not</em> independently verified: the specific mechanism of the December 2025 incident (the "deleted the production environment" claim<a class="ref" href="#ref23">[23]</a>) and the 6.3 million lost orders figure<a class="ref" href="#ref24">[24]</a><a class="ref" href="#ref30">[30]</a>, which originate from secondary sources with no direct access to Amazon's internal systems.</p>
+
+<p>The argument this article makes does not depend on those specific details being accurate. The confirmed facts — a Fortune-500 company imposed a sweeping safety reset on AI-assisted deployments after production failures, with a senior VP publicly acknowledging that governance had not kept pace with AI adoption — are sufficient to support the tribal-knowledge thesis. The article includes the specific figures as reported, not as verified, and the critical reader should weight them accordingly.</p>
+
+<h3 style="font-size:20px;color:var(--accent);">Weakness 4 — The Skill Half-Life Chart: Illustration, Not Measurement</h3>
+
+<p>The abstraction ladder and skill half-life chart are conceptually compelling but have false quantitative precision. The durations — 20 years for assembly, 18 months for prompt engineering — are not empirical measurements. They are the author's subjective judgements about when each skill became and ceased to be the primary hiring differentiator, anchored to plausible but debatable events. The chart has been updated with an explicit caveat, and the methodology note explains how to read the compression pattern as a directional argument without treating the specific numbers as data.</p>
+
 <h3>What Needed Reformulation</h3>
 
-<p>The phrase “the code became disposable” was rhetorically effective but analytically too broad. In long-lived systems, code is not disposable in any practical operational sense. It accumulates performance constraints, security obligations, compatibility burdens, and maintenance cost over time. Source synthesis on specification-driven development supports <em>increased leverage from better specifications</em>, not the elimination of downstream comprehension<a class="ref" href="#ref19">[19]</a><a class="ref" href="#ref20">[20]</a><a class="ref" href="#ref21">[21]</a><a class="ref" href="#ref22">[22]</a><a class="ref" href="#ref33">[33]</a>.</p>
+<p>The phrase "the code became disposable" was rhetorically effective but analytically too broad. In any long-lived production system, code is not disposable in any operational sense — it accumulates performance constraints, security obligations, compatibility burdens, and maintenance cost over time. The sources on SDD support <em>increased leverage from better specifications</em>, not the elimination of downstream code comprehension<a class="ref" href="#ref19">[19]</a><a class="ref" href="#ref20">[20]</a><a class="ref" href="#ref21">[21]</a><a class="ref" href="#ref22">[22]</a><a class="ref" href="#ref33">[33]</a>. The Agile narrative has also been tightened: the article no longer implies that Agile teams were uniformly documentation-hostile, which was a caricature of a more nuanced manifesto.</p>
 
 <blockquote>
-Reformulated claim: AI makes code generation cheaper, but it makes trust, verification, and long-run maintainability more expensive. Rigour migrates upstream, but never leaves operations.
+Reformulated central claim: AI makes code generation cheaper, but it makes trust, verification, and long-run maintainability more expensive. Rigour migrates upstream to specification and supervision, but it never leaves operations — it accumulates there. Teams that treat code as disposable are optimising for velocity at the cost of comprehension; the Amazon incidents suggest this is a transaction with a deferred and substantial due date.
 </blockquote>
 
-<h3>Evidence Grading: How Confident Should We Be?</h3>
+<h3>What This Article Does Not Prove</h3>
 
-<p>Not all references carry equal epistemic weight. To avoid overclaiming, the argument should separate what is likely structural from what is still provisional:</p>
+<p>In the interest of honest scope-setting, five claims the article does not make — and does not have the evidence to make:</p>
+
+<div class="solution-map">
+<table>
+<tr><th style="width:45%;">Claim</th><th>Why the evidence doesn't support it</th></tr>
+<tr><td>SDD is demonstrably superior to well-executed Agile specification practices in controlled conditions</td><td>The evidence base for SDD comes from early-adopter teams and vendor tooling reports, not longitudinal controlled studies.</td></tr>
+<tr><td>The middle loop of supervisory engineering is a permanent feature of software work</td><td>It may be a transitional phase before better AI oversight tooling makes most of it unnecessary. Nobody knows.</td></tr>
+<tr><td>CS enrolment decline is primarily caused by AI-driven job market changes</td><td>Post-pandemic correction, economic conditions, and demographic shifts are plausible contributing factors that this article doesn't quantify.</td></tr>
+<tr><td>The skill half-life compression trend continues at the same pace</td><td>It may plateau as AI capabilities plateau. The most recent data points are also the most uncertain.</td></tr>
+<tr><td>The productivity multipliers (10×, 1.7×, etc.) are accurate to within a factor of two</td><td>They come from a single team's observation and vendor-commissioned studies respectively. The direction is credible; the magnitude is not.</td></tr>
+</table>
+</div>
+
+<h3>Evidence Grading: How Confident Should We Be?</h3>
 
 <div class="solution-map">
 <table>
 <tr>
   <th style="width:25%;">Evidence Type</th>
   <th style="width:45%;">What It Supports</th>
-  <th>Confidence Level</th>
+  <th>Confidence</th>
 </tr>
 <tr>
-  <td>Practitioner testimony</td>
+  <td>Practitioner testimony (Molist)</td>
   <td>Workflow shifts, team-level friction, supervisory burden</td>
-  <td><span class="pill gold">Medium</span></td>
+  <td><span class="pill gold">Medium</span> — specific and consistent, but single-source</td>
 </tr>
 <tr>
-  <td>Vendor and tooling reports</td>
+  <td>Retreat synthesis (Thoughtworks)</td>
+  <td>Directional patterns across multiple teams and practitioners</td>
+  <td><span class="pill green">Medium-High</span> — multi-practitioner, self-selected participants</td>
+</tr>
+<tr>
+  <td>Vendor quality reports</td>
   <td>Error patterns and review load trends</td>
-  <td><span class="pill gold">Medium</span></td>
+  <td><span class="pill gold">Medium</span> — direction credible, magnitude from interested parties</td>
 </tr>
 <tr>
-  <td>Incident case studies</td>
-  <td>Failure modes under weak governance</td>
-  <td><span class="pill green">High for possibility</span> <span class="pill gold">Medium for prevalence</span></td>
+  <td>Independent developer surveys (Stack Overflow)</td>
+  <td>Sentiment, trust levels, usage patterns</td>
+  <td><span class="pill green">Medium-High</span> — large samples, independent methodology</td>
 </tr>
 <tr>
-  <td>Labor-market snapshots</td>
+  <td>Incident case studies (Amazon)</td>
+  <td>Governance failure modes under fast AI deployment</td>
+  <td><span class="pill green">High for pattern</span> <span class="pill gold">Low-Medium for specifics</span></td>
+</tr>
+<tr>
+  <td>Labour market data (Fed, BLS)</td>
   <td>Near-term hiring movement</td>
-  <td><span class="pill blue">Low-Medium</span></td>
+  <td><span class="pill blue">Medium</span> — real data, short time horizon, attribution uncertain</td>
 </tr>
 <tr>
-  <td>Cross-source convergence</td>
-  <td>Direction of travel: from output velocity toward verification discipline</td>
+  <td>Cross-source convergence on direction</td>
+  <td>The shift from output velocity toward verification discipline</td>
   <td><span class="pill green">High</span></td>
 </tr>
 </table>
@@ -1738,23 +1533,16 @@ Reformulated claim: AI makes code generation cheaper, but it makes trust, verifi
 
 <h3>Integrated Conclusion</h3>
 
-<p>The article's strongest form is therefore a synthesis, not a reversal narrative. The profession is not moving from “engineering” to “prompting.” It is moving from <em>code scarcity</em> to <em>trust scarcity</em>. Teams that excel will be those that combine faster generation with stronger specification, adversarial validation, security constraints, architecture discipline, and explicit operational memory<a class="ref" href="#ref7">[7]</a><a class="ref" href="#ref9">[9]</a><a class="ref" href="#ref19">[19]</a><a class="ref" href="#ref20">[20]</a><a class="ref" href="#ref33">[33]</a>.</p>
+<p>The profession is not moving from "engineering" to "prompting." It is moving from <em>code scarcity</em> to <em>trust scarcity</em>. Teams that excel will be those that combine faster generation with stronger specification, adversarial validation, security constraints, architecture discipline, and explicit operational memory<a class="ref" href="#ref7">[7]</a><a class="ref" href="#ref9">[9]</a><a class="ref" href="#ref19">[19]</a><a class="ref" href="#ref20">[20]</a><a class="ref" href="#ref33">[33]</a>.</p>
 
-<p>That reformulation preserves the central insight of the original essay while improving its falsifiability, evidentiary transparency, and practical usefulness. In a field now defined by machine-accelerated output, the winning posture is neither uncritical optimism nor blanket rejection. It is disciplined skepticism paired with explicit verification.</p>
+<p>That reformulation preserves the central insight of this essay while being honest about what the evidence actually demonstrates. The strongest version of the argument — that ambiguity is more expensive, supervisory work is growing, and tribal knowledge is a critical liability — survives the scrutiny applied here. The weaker versions — precise productivity multipliers, definitive claims about the future of CS education, the permanence of current workflow patterns — do not, and this article no longer makes them. In a field now defined by machine-accelerated output, the winning posture is disciplined scepticism paired with explicit verification. That applies to the AI tools you deploy. It applies equally to the arguments in this article.</p>
 
 <details class="methodology">
-<summary>Methodological note (Part XIII)</summary>
-<p>This critical section evaluates claims using a mixed-evidence hierarchy rather than a single source class. Sources were weighted in this order: primary practitioner testimony and retreat synthesis for workflow patterns<a class="ref" href="#ref1">[1]</a><a class="ref" href="#ref7">[7]</a><a class="ref" href="#ref9">[9]</a>; empirical quality signals for failure-mode directionality<a class="ref" href="#ref16">[16]</a><a class="ref" href="#ref17">[17]</a><a class="ref" href="#ref18">[18]</a>; and methodological discussions of SDD limits for scope-bounding and falsifiability<a class="ref" href="#ref19">[19]</a><a class="ref" href="#ref20">[20]</a><a class="ref" href="#ref21">[21]</a><a class="ref" href="#ref22">[22]</a><a class="ref" href="#ref33">[33]</a>. Incident reports are treated as strong evidence of possible failure modes, but only moderate evidence of prevalence<a class="ref" href="#ref23">[23]</a><a class="ref" href="#ref24">[24]</a><a class="ref" href="#ref25">[25]</a><a class="ref" href="#ref32">[32]</a>.</p>
-<p>The aim is not to replace the article's thesis, but to refine it into a narrower claim that is more testable over time and less sensitive to short-horizon market noise.</p>
-
-<table>
-<tr><th>Critical references used in Part XIII</th><th>Role in argument</th></tr>
-<tr><td><a href="#ref1">[1]</a>, <a href="#ref7">[7]</a>, <a href="#ref8">[8]</a>, <a href="#ref9">[9]</a>, <a href="#ref14">[14]</a></td><td>Practitioner and retreat evidence for workflow shifts</td></tr>
-<tr><td><a href="#ref16">[16]</a>, <a href="#ref17">[17]</a>, <a href="#ref18">[18]</a>, <a href="#ref34">[34]</a></td><td>Quality and incident trend signals under AI-heavy development</td></tr>
-<tr><td><a href="#ref19">[19]</a>, <a href="#ref20">[20]</a>, <a href="#ref21">[21]</a>, <a href="#ref22">[22]</a>, <a href="#ref33">[33]</a></td><td>Spec-driven development capabilities and limitations</td></tr>
-<tr><td><a href="#ref23">[23]</a>, <a href="#ref24">[24]</a>, <a href="#ref25">[25]</a>, <a href="#ref32">[32]</a></td><td>Case evidence on governance and operational failure modes</td></tr>
-</table>
+<summary>Methodological note (§XIII)</summary>
+<p>This critical section evaluates claims using a mixed-evidence hierarchy. Sources were weighted in this order: primary practitioner testimony and retreat synthesis for workflow patterns<a class="ref" href="#ref1">[1]</a><a class="ref" href="#ref7">[7]</a><a class="ref" href="#ref9">[9]</a>; independent developer surveys for sentiment and prevalence<a class="ref" href="#ref17">[17]</a><a class="ref" href="#ref28">[28]</a>; vendor quality reports for directional signals only<a class="ref" href="#ref16">[16]</a><a class="ref" href="#ref18">[18]</a><a class="ref" href="#ref34">[34]</a>; and methodological discussions of SDD limits for scope-bounding<a class="ref" href="#ref19">[19]</a><a class="ref" href="#ref20">[20]</a><a class="ref" href="#ref21">[21]</a><a class="ref" href="#ref22">[22]</a><a class="ref" href="#ref33">[33]</a>. Incident reports are treated as strong evidence of possible failure modes, but only moderate evidence of prevalence or precise mechanism<a class="ref" href="#ref23">[23]</a><a class="ref" href="#ref24">[24]</a><a class="ref" href="#ref25">[25]</a><a class="ref" href="#ref32">[32]</a>.</p>
+<p>The aim is not to replace the article's thesis, but to refine it into a narrower claim that is more testable over time, more transparent about its evidence base, and less sensitive to short-horizon market noise.</p>
 </details>
+
 
 <!-- ════════════════ REFERENCES ════════════════ -->
 <div class="references">
@@ -1769,37 +1557,37 @@ Reformulated claim: AI makes code generation cheaper, but it makes trust, verifi
   <li id="ref7">Thoughtworks (2026). "The Future of Software Development Retreat." <a href="https://www.thoughtworks.com/about-us/events/the-future-of-software-development" target="_blank">thoughtworks.com</a></li>
   <li id="ref8">Kularatne, L. (2026). "Future of Software Engineering — Thoughtworks." <a href="https://www.lasantha.org/blog/future-of-software-engineering-thoughtworks/" target="_blank">lasantha.org</a></li>
   <li id="ref9">Thoughtworks (2026). "Future of Software Engineering Retreat: Key Takeaways." (PDF report). <a href="https://www.thoughtworks.com/content/dam/thoughtworks/documents/report/tw_future%20_of_software_development_retreat_%20key_takeaways.pdf" target="_blank">thoughtworks.com (PDF)</a></li>
-  <li id="ref10">Golchian, P. (2026). "Developer Job Market Recovery 2026: Data Analysis and Trends." <a href="https://pooya.blog/blog/software-dev-job-market-recovery-2026/" target="_blank">pooya.blog</a></li>
+  <li id="ref10">Golchian, P. (2026). "Developer Job Market Recovery 2026." <a href="https://pooya.blog/blog/software-dev-job-market-recovery-2026/" target="_blank">pooya.blog</a></li>
   <li id="ref11">CNN Business (2026). "The demise of software engineering jobs has been greatly exaggerated." <a href="https://www.cnn.com/2026/04/08/tech/ai-software-developer-jobs" target="_blank">cnn.com</a></li>
   <li id="ref12">Gloat (2026). "10 Key AI Workforce Trends in 2026." <a href="https://gloat.com/blog/ai-workforce-trends/" target="_blank">gloat.com</a></li>
-  <li id="ref13">TurboGeek (2026). "AI and the IT Job Market in 2026: Reality." <a href="https://www.turbogeek.co.uk/ai-it-jobs-2026/" target="_blank">turbogeek.co.uk</a></li>
+  <li id="ref13">TurboGeek (2026). "AI and the IT Job Market in 2026." <a href="https://www.turbogeek.co.uk/ai-it-jobs-2026/" target="_blank">turbogeek.co.uk</a></li>
   <li id="ref14">Laycock, R. / Thoughtworks (2026). "Reflections on the Future of Software Engineering Retreat." <a href="https://www.thoughtworks.com/insights/articles/reflections-future-software-engineering-retreat" target="_blank">thoughtworks.com</a></li>
   <li id="ref15">Fowler, M. (2026). "Fragments: February 18." <a href="https://martinfowler.com/fragments/2026-02-18.html" target="_blank">martinfowler.com</a></li>
-  <li id="ref16">CodeRabbit (2025). "State of AI vs. Human Code Generation Report." <a href="https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report" target="_blank">coderabbit.ai</a></li>
+  <li id="ref16">CodeRabbit (2025). "State of AI vs. Human Code Generation Report." <a href="https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report" target="_blank">coderabbit.ai</a> <em>(vendor source — see §XIII)</em></li>
   <li id="ref17">Stack Overflow (2026). "Are bugs and incidents inevitable with AI coding agents?" <a href="https://stackoverflow.blog/2026/01/28/are-bugs-and-incidents-inevitable-with-ai-coding-agents/" target="_blank">stackoverflow.blog</a></li>
-  <li id="ref18">VentureBeat (2026). "43% of AI-generated code changes need debugging in production, survey finds." Lightrun 2026 State of AI-Powered Engineering Report. <a href="https://venturebeat.com/technology/43-of-ai-generated-code-changes-need-debugging-in-production-survey-finds" target="_blank">venturebeat.com</a></li>
-  <li id="ref19">GitHub Blog (2025). "Spec-driven development with AI: Get started with a new open source toolkit." <a href="https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/" target="_blank">github.blog</a></li>
+  <li id="ref18">VentureBeat (2026). "43% of AI-generated code changes need debugging in production." Lightrun 2026 State of AI-Powered Engineering Report. <a href="https://venturebeat.com/technology/43-of-ai-generated-code-changes-need-debugging-in-production-survey-finds" target="_blank">venturebeat.com</a> <em>(vendor source — see §XIII)</em></li>
+  <li id="ref19">GitHub Blog (2025). "Spec-driven development with AI." <a href="https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/" target="_blank">github.blog</a></li>
   <li id="ref20">Thoughtworks (2025). "Spec-driven development: Unpacking one of 2025's key new AI-assisted engineering practices." <a href="https://www.thoughtworks.com/en-us/insights/blog/agile-engineering-practices/spec-driven-development-unpacking-2025-new-engineering-practices" target="_blank">thoughtworks.com</a></li>
   <li id="ref21">Zhu, Y. et al. (2026). "Spec-Driven Development: From Code to Contract in the Age of AI Coding Assistants." <em>arXiv</em>. <a href="https://arxiv.org/html/2602.00180v1" target="_blank">arxiv.org</a></li>
   <li id="ref22">Fowler, M. (2026). "Understanding Spec-Driven Development: Kiro, spec-kit, and Tessl." <a href="https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html" target="_blank">martinfowler.com</a></li>
-  <li id="ref23">RUH.AI (2026). "Amazon Kiro AI Outage: When an AI Agent Deleted [production]." <a href="https://www.ruh.ai/blogs/amazon-kiro-ai-outage-ai-governance-failure" target="_blank">ruh.ai</a></li>
-  <li id="ref24">CreatiAI (2026). "Amazon Implements 90-Day Code Safety Reset After AI Agent Causes Series of Retail Website Outages." <a href="https://creati.ai/ai-news/2026-03-13/amazon-90-day-code-safety-reset-ai-agent-retail-outages-2026/" target="_blank">creati.ai</a></li>
-  <li id="ref25">Computerworld (2026). "Amazon finds out AI programming isn't all it's cracked up to be." <a href="https://www.computerworld.com/article/4145573/amazon-finds-out-ai-programming-isnt-all-its-cracked-up-to-be.html" target="_blank">computerworld.com</a></li>
+  <li id="ref23">RUH.AI (2026). "Amazon Kiro AI Outage." <a href="https://www.ruh.ai/blogs/amazon-kiro-ai-outage-ai-governance-failure" target="_blank">ruh.ai</a> <em>(low-authority source — specific claims unverified — see §XIII)</em></li>
+  <li id="ref24">CreatiAI (2026). "Amazon Implements 90-Day Code Safety Reset." <a href="https://creati.ai/ai-news/2026-03-13/amazon-90-day-code-safety-reset-ai-agent-retail-outages-2026/" target="_blank">creati.ai</a> <em>(low-authority source for specific figures — see §XIII)</em></li>
+  <li id="ref25">Computerworld (2026). "Amazon finds out AI programming isn't all it's cracked up to be." <a href="https://www.computerworld.com/article/4145573/amazon-finds-out-ai-programming-isnt-all-its-cracked-up-to-be.html" target="_blank">computerworld.com</a> <em>(primary source for Treadwell quote)</em></li>
   <li id="ref26">CodeIntelligently (2026). "AI Code Quality Guide 2026." <a href="https://codeintelligently.com/blog/ai-code-quality-guide-2026" target="_blank">codeintelligently.com</a></li>
   <li id="ref27">IEEE Spectrum (2026). "AI Coding Degrades: Silent Failures Emerge." <a href="https://spectrum.ieee.org/ai-coding-degrades" target="_blank">spectrum.ieee.org</a></li>
   <li id="ref28">Second Talent (2026). "AI-Generated Code Quality Metrics and Statistics for 2026." <a href="https://www.secondtalent.com/resources/ai-generated-code-quality-metrics-and-statistics-for-2026/" target="_blank">secondtalent.com</a></li>
-  <li id="ref29">CodeRabbit (2025). "2025 was the year of AI speed. 2026 will be the year of AI quality." <a href="https://www.coderabbit.ai/blog/2025-was-the-year-of-ai-speed-2026-will-be-the-year-of-ai-quality" target="_blank">coderabbit.ai</a></li>
-  <li id="ref30">Security Boulevard (2026). "Amazon Lost 6.3 Million Orders to Vibe Coding. Your SOC Is Next." <a href="https://securityboulevard.com/2026/03/amazon-lost-6-3-million-orders-to-vibe-coding-your-soc-is-next/" target="_blank">securityboulevard.com</a></li>
-  <li id="ref31">Verdent AI (2026). "Best AI for Code Review 2026: Automated Review Tools Compared." <a href="https://www.verdent.ai/guides/best-ai-for-code-review-2026" target="_blank">verdent.ai</a></li>
-  <li id="ref32">Fortune (2026). "An AI agent destroyed this coder's entire database. He's not the only one with a horror story." <a href="https://fortune.com/2026/03/18/ai-coding-risks-amazon-agents-enterprise/" target="_blank">fortune.com</a></li>
+  <li id="ref29">CodeRabbit (2025). "2025 was the year of AI speed. 2026 will be the year of AI quality." <a href="https://www.coderabbit.ai/blog/2025-was-the-year-of-ai-speed-2026-will-be-the-year-of-ai-quality" target="_blank">coderabbit.ai</a> <em>(vendor source)</em></li>
+  <li id="ref30">Security Boulevard (2026). "Amazon Lost 6.3 Million Orders to Vibe Coding." <a href="https://securityboulevard.com/2026/03/amazon-lost-6-3-million-orders-to-vibe-coding-your-soc-is-next/" target="_blank">securityboulevard.com</a> <em>(secondary source — see §XIII)</em></li>
+  <li id="ref31">Verdent AI (2026). "Best AI for Code Review 2026." <a href="https://www.verdent.ai/guides/best-ai-for-code-review-2026" target="_blank">verdent.ai</a></li>
+  <li id="ref32">Fortune (2026). "An AI agent destroyed this coder's entire database." <a href="https://fortune.com/2026/03/18/ai-coding-risks-amazon-agents-enterprise/" target="_blank">fortune.com</a></li>
   <li id="ref33">Osmani, A. (2026). "How to Write a Good Spec for AI Agents." <em>O'Reilly Radar</em>. <a href="https://www.oreilly.com/radar/how-to-write-a-good-spec-for-ai-agents/" target="_blank">oreilly.com</a></li>
-  <li id="ref34">Agile Pain Relief (2026). "AI-Generated Code Quality and the Challenges we all face." <a href="https://agilepainrelief.com/blog/ai-generated-code-quality-problems/" target="_blank">agilepainrelief.com</a></li>
+  <li id="ref34">Agile Pain Relief (2026). "AI-Generated Code Quality and the Challenges we all face." <a href="https://agilepainrelief.com/blog/ai-generated-code-quality-problems/" target="_blank">agilepainrelief.com</a> <em>(citing Cortex data — vendor source — see §XIII)</em></li>
   <li id="ref35">Ondrejka, C. (2026). "Outcome Engineering." <a href="https://cory.news/posts/2026-02-08-outcome-engineering/" target="_blank">cory.news</a></li>
   <li id="ref36">CIO (2026). "How agentic AI will reshape engineering workflows in 2026." <a href="https://www.cio.com/article/4134741/how-agentic-ai-will-reshape-engineering-workflows-in-2026.html" target="_blank">cio.com</a></li>
   <li id="ref37">InfoQ (2026). "Agentic AI Patterns Reinforce Engineering Discipline." <a href="https://www.infoq.com/news/2026/03/agentic-engineering-patterns/" target="_blank">infoq.com</a></li>
   <li id="ref38">Built In (2026). "Computer Science Degrees Are Losing Popularity in the AI Era." <a href="https://builtin.com/articles/computer-science-degree-decline-ai" target="_blank">builtin.com</a></li>
-  <li id="ref39">Houston Public Media (2026). "AI is changing how Texas universities teach computer science as job market slows." <a href="https://www.houstonpublicmedia.org/articles/education/2026/04/21/549655/texas-computer-science-college-degree-ai/" target="_blank">houstonpublicmedia.org</a></li>
-  <li id="ref40">Medium / News World (2026). "The 2026 CS Crisis: Why General Computer Science Degrees are Losing Their Luster." <a href="https://medium.com/@longtamdoo.irich/the-2026-cs-crisis-why-general-computer-science-degrees-are-losing-their-luster-612fab669b37" target="_blank">medium.com</a></li>
+  <li id="ref39">Houston Public Media (2026). "AI is changing how Texas universities teach computer science." <a href="https://www.houstonpublicmedia.org/articles/education/2026/04/21/549655/texas-computer-science-college-degree-ai/" target="_blank">houstonpublicmedia.org</a></li>
+  <li id="ref40">Medium / News World (2026). "The 2026 CS Crisis." <a href="https://medium.com/@longtamdoo.irich/the-2026-cs-crisis-why-general-computer-science-degrees-are-losing-their-luster-612fab669b37" target="_blank">medium.com</a></li>
   <li id="ref41">Higher Ed Dive (2026). "AI, computer science and the shifting reality of tech employment." <a href="https://www.highereddive.com/spons/ai-computer-science-and-the-shifting-reality-of-tech-employment/810676/" target="_blank">highereddive.com</a></li>
   <li id="ref42">NACH Stats (2025). "How AI Is Changing College Majors In 2026." <a href="https://nchstats.com/ai-changing-college-majors/" target="_blank">nchstats.com</a></li>
   <li id="ref43">EdSource (2025). "Why all students need a foundation in computer science and AI." <a href="https://edsource.org/2025/computer-science-ai-literacy/744747" target="_blank">edsource.org</a></li>
@@ -1814,12 +1602,11 @@ Reformulated claim: AI makes code generation cheaper, but it makes trust, verifi
 
 <div style="background:#ffffff; border:1px solid #e0ddd5; border-left:5px solid #2c3e50; border-radius:8px; color:#555555; font-family:'Source Sans 3', Georgia, serif; font-size:13.5px; line-height:1.75; margin:40px 0 24px; padding:18px 22px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
   <strong style="color:#2c3e50;">On method and tools</strong><br><br>
-  The research, structural analysis, writing, and iterative revision of this article were carried out collaboratively with <a href="https://claude.ai" style="color:#2c3e50; text-decoration:underline;" target="_blank">Claude Opus 4.6</a> (Anthropic). The process followed what the article itself describes: I provided the direction, the specifications, and the critical review; the model provided research synthesis, drafting, and revision across multiple iterations. Each version was reviewed, challenged, and refined — including a formal critique pass that expanded the bibliography from 15 to 45 sources and identified structural weaknesses in the argument.<br><br>
-  All references were verified against primary sources. Where claims are attributed to specific reports or data sets, the original source is linked in the bibliography.<br><br>
+  The research, structural analysis, writing, and iterative revision of this article were carried out collaboratively with <a href="https://claude.ai" style="color:#2c3e50; text-decoration:underline;" target="_blank">Claude Sonnet 4.6</a> (Anthropic). The process followed what the article itself describes: I provided the direction, the specifications, and the critical review; the model provided research synthesis, drafting, and revision across multiple iterations. Each version was reviewed, challenged, and refined — including a formal critique pass that identified four structural weaknesses in the evidence architecture and expanded the critical evaluation from a rhetorical fix into a genuine methodological reckoning.<br><br>
+  All references were verified against primary sources. Where claims are attributed to specific reports or data sets, the original source is linked in the bibliography. Sources of known commercial interest are flagged inline.<br><br>
   I believe this working method — human specification and judgement, machine research and drafting, iterative refinement through structured dialogue — is itself an instance of the supervisory model this article describes. The specification was the product. The generated text was disposable until it wasn't.
 </div>
 
 </div>
-
 </body>
 </html>
