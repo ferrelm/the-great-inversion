@@ -1540,7 +1540,7 @@ Do not automate coding harder first. Automate supervision better first. That is 
 </tr>
 <tr>
   <td>C / Structured programming</td>
-  <td>1972: C created at Bell Labs; K&amp;R published 1978 [3]</td>
+  <td>1972: C created at Bell Labs; K&amp;R published 1978 <a class="ref" href="#ref3">[3]</a></td>
   <td>~1990: C++ and OOP paradigm become mainstream hiring criteria</td>
   <td>~18 yr</td>
 </tr>
@@ -1559,13 +1559,13 @@ Do not automate coding harder first. Automate supervision better first. That is 
 <tr>
   <td>Prompt engineering</td>
   <td>2023: ChatGPT adoption (Nov 2022) creates demand for prompt design as a named skill</td>
-  <td>Mid-2024: multi-agent orchestration and autonomous coding tools (Claude Code, Cursor, Devin) displace prompt craft as differentiator [36]</td>
+  <td>Mid-2024: multi-agent orchestration and autonomous coding tools (Claude Code, Cursor, Devin) displace prompt craft as differentiator <a class="ref" href="#ref36">[36]</a></td>
   <td>~18 mo</td>
 </tr>
 <tr>
   <td>Agent creation</td>
-  <td>2025: agent orchestration becomes the primary hiring differentiator [36] [37]</td>
-  <td>~2026: spec-driven development and outcome engineering emerge [19] [20] [35]</td>
+  <td>2025: agent orchestration becomes the primary hiring differentiator <a class="ref" href="#ref36">[36]</a> <a class="ref" href="#ref37">[37]</a></td>
+  <td>~2026: spec-driven development and outcome engineering emerge <a class="ref" href="#ref19">[19]</a> <a class="ref" href="#ref20">[20]</a> <a class="ref" href="#ref35">[35]</a></td>
   <td>~12 mo (est.)</td>
 </tr>
 </table>
@@ -1654,6 +1654,107 @@ Do not automate coding harder first. Automate supervision better first. That is 
 </div>
 
 <p>Perhaps that is the most important lesson from the entire fifty-year arc this article has traced. From BASIC to C to Java to Agile to AI agents to whatever comes next — the constant is not the tool. The constant is the human who decides what to build, why to build it, and whether it was built well. The day that question is fully automated is the day we are having a very different conversation. We are not there yet. And the gap between "AI can generate code" and "AI can decide what should exist in the world" may turn out to be far wider than the current pace of progress suggests.</p>
+
+<!-- ════════════════ PART XIII: CRITICAL EVALUATION ════════════════ -->
+<h2>XIII. Critical Evaluation and Reformulated Thesis</h2>
+
+<p>A strong argument should survive direct scrutiny. The central claim of this essay was intentionally provocative: that software engineering rigour is migrating upstream in the age of coding agents. That claim remains persuasive. But some formulations in the original text were too absolute and benefit from tightening. This section integrates a formal rebuttal into the article itself, using the same evidentiary discipline applied elsewhere.</p>
+
+<h3>What Holds Under Scrutiny</h3>
+
+<p>Three core propositions are strongly supported by the sources already cited:</p>
+
+<div class="comparison">
+<table>
+<tr>
+  <th>Proposition</th>
+  <th>Why It Holds</th>
+  <th>Evidence Base</th>
+</tr>
+<tr>
+  <td><strong>Ambiguity is more expensive in AI-assisted development</strong></td>
+  <td>Fast generation amplifies underspecified intent into production risk.</td>
+  <td>Practitioner testimony + quality reports + incident data<a class="ref" href="#ref1">[1]</a><a class="ref" href="#ref16">[16]</a><a class="ref" href="#ref17">[17]</a><a class="ref" href="#ref18">[18]</a></td>
+</tr>
+<tr>
+  <td><strong>Supervisory engineering work is growing in importance</strong></td>
+  <td>Teams report increased effort in review, trust calibration, and architectural coherence.</td>
+  <td>Retreat synthesis + practitioner reports<a class="ref" href="#ref7">[7]</a><a class="ref" href="#ref8">[8]</a><a class="ref" href="#ref9">[9]</a><a class="ref" href="#ref14">[14]</a></td>
+</tr>
+<tr>
+  <td><strong>Operational context and tribal knowledge remain hard constraints</strong></td>
+  <td>Models can generate plausible code while missing hidden production assumptions.</td>
+  <td>Incident case studies + enterprise survey findings<a class="ref" href="#ref18">[18]</a><a class="ref" href="#ref23">[23]</a><a class="ref" href="#ref24">[24]</a><a class="ref" href="#ref25">[25]</a><a class="ref" href="#ref32">[32]</a></td>
+</tr>
+</table>
+</div>
+
+<h3>What Needed Reformulation</h3>
+
+<p>The phrase “the code became disposable” was rhetorically effective but analytically too broad. In long-lived systems, code is not disposable in any practical operational sense. It accumulates performance constraints, security obligations, compatibility burdens, and maintenance cost over time. Source synthesis on specification-driven development supports <em>increased leverage from better specifications</em>, not the elimination of downstream comprehension<a class="ref" href="#ref19">[19]</a><a class="ref" href="#ref20">[20]</a><a class="ref" href="#ref21">[21]</a><a class="ref" href="#ref22">[22]</a><a class="ref" href="#ref33">[33]</a>.</p>
+
+<blockquote>
+Reformulated claim: AI makes code generation cheaper, but it makes trust, verification, and long-run maintainability more expensive. Rigour migrates upstream, but never leaves operations.
+</blockquote>
+
+<h3>Evidence Grading: How Confident Should We Be?</h3>
+
+<p>Not all references carry equal epistemic weight. To avoid overclaiming, the argument should separate what is likely structural from what is still provisional:</p>
+
+<div class="solution-map">
+<table>
+<tr>
+  <th style="width:25%;">Evidence Type</th>
+  <th style="width:45%;">What It Supports</th>
+  <th>Confidence Level</th>
+</tr>
+<tr>
+  <td>Practitioner testimony</td>
+  <td>Workflow shifts, team-level friction, supervisory burden</td>
+  <td><span class="pill gold">Medium</span></td>
+</tr>
+<tr>
+  <td>Vendor and tooling reports</td>
+  <td>Error patterns and review load trends</td>
+  <td><span class="pill gold">Medium</span></td>
+</tr>
+<tr>
+  <td>Incident case studies</td>
+  <td>Failure modes under weak governance</td>
+  <td><span class="pill green">High for possibility</span> <span class="pill gold">Medium for prevalence</span></td>
+</tr>
+<tr>
+  <td>Labor-market snapshots</td>
+  <td>Near-term hiring movement</td>
+  <td><span class="pill blue">Low-Medium</span></td>
+</tr>
+<tr>
+  <td>Cross-source convergence</td>
+  <td>Direction of travel: from output velocity toward verification discipline</td>
+  <td><span class="pill green">High</span></td>
+</tr>
+</table>
+</div>
+
+<h3>Integrated Conclusion</h3>
+
+<p>The article's strongest form is therefore a synthesis, not a reversal narrative. The profession is not moving from “engineering” to “prompting.” It is moving from <em>code scarcity</em> to <em>trust scarcity</em>. Teams that excel will be those that combine faster generation with stronger specification, adversarial validation, security constraints, architecture discipline, and explicit operational memory<a class="ref" href="#ref7">[7]</a><a class="ref" href="#ref9">[9]</a><a class="ref" href="#ref19">[19]</a><a class="ref" href="#ref20">[20]</a><a class="ref" href="#ref33">[33]</a>.</p>
+
+<p>That reformulation preserves the central insight of the original essay while improving its falsifiability, evidentiary transparency, and practical usefulness. In a field now defined by machine-accelerated output, the winning posture is neither uncritical optimism nor blanket rejection. It is disciplined skepticism paired with explicit verification.</p>
+
+<details class="methodology">
+<summary>Methodological note (Part XIII)</summary>
+<p>This critical section evaluates claims using a mixed-evidence hierarchy rather than a single source class. Sources were weighted in this order: primary practitioner testimony and retreat synthesis for workflow patterns<a class="ref" href="#ref1">[1]</a><a class="ref" href="#ref7">[7]</a><a class="ref" href="#ref9">[9]</a>; empirical quality signals for failure-mode directionality<a class="ref" href="#ref16">[16]</a><a class="ref" href="#ref17">[17]</a><a class="ref" href="#ref18">[18]</a>; and methodological discussions of SDD limits for scope-bounding and falsifiability<a class="ref" href="#ref19">[19]</a><a class="ref" href="#ref20">[20]</a><a class="ref" href="#ref21">[21]</a><a class="ref" href="#ref22">[22]</a><a class="ref" href="#ref33">[33]</a>. Incident reports are treated as strong evidence of possible failure modes, but only moderate evidence of prevalence<a class="ref" href="#ref23">[23]</a><a class="ref" href="#ref24">[24]</a><a class="ref" href="#ref25">[25]</a><a class="ref" href="#ref32">[32]</a>.</p>
+<p>The aim is not to replace the article's thesis, but to refine it into a narrower claim that is more testable over time and less sensitive to short-horizon market noise.</p>
+
+<table>
+<tr><th>Critical references used in Part XIII</th><th>Role in argument</th></tr>
+<tr><td><a href="#ref1">[1]</a>, <a href="#ref7">[7]</a>, <a href="#ref8">[8]</a>, <a href="#ref9">[9]</a>, <a href="#ref14">[14]</a></td><td>Practitioner and retreat evidence for workflow shifts</td></tr>
+<tr><td><a href="#ref16">[16]</a>, <a href="#ref17">[17]</a>, <a href="#ref18">[18]</a>, <a href="#ref34">[34]</a></td><td>Quality and incident trend signals under AI-heavy development</td></tr>
+<tr><td><a href="#ref19">[19]</a>, <a href="#ref20">[20]</a>, <a href="#ref21">[21]</a>, <a href="#ref22">[22]</a>, <a href="#ref33">[33]</a></td><td>Spec-driven development capabilities and limitations</td></tr>
+<tr><td><a href="#ref23">[23]</a>, <a href="#ref24">[24]</a>, <a href="#ref25">[25]</a>, <a href="#ref32">[32]</a></td><td>Case evidence on governance and operational failure modes</td></tr>
+</table>
+</details>
 
 <!-- ════════════════ REFERENCES ════════════════ -->
 <div class="references">
