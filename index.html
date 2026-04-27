@@ -791,6 +791,74 @@ blockquote cite {
   vertical-align: top;
 }
 
+/* ── COLLAPSIBLE EXPLAINERS ── */
+.explainer-box {
+  margin: 28px 0 34px;
+  padding: 20px;
+  border: 1px solid #e0ddd5;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #fcfbf8, #ffffff);
+}
+.explainer-box h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  margin-bottom: 6px;
+  color: var(--accent2);
+}
+.explainer-box p {
+  margin-bottom: 14px;
+  font-size: 15px;
+  color: #5f6668;
+}
+.explainer-item {
+  border-top: 1px solid #ece8de;
+}
+.explainer-item:first-of-type {
+  border-top: none;
+}
+.explainer-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px 4px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  position: relative;
+  padding-right: 28px;
+}
+.explainer-item summary::-webkit-details-marker {
+  display: none;
+}
+.explainer-item summary::after {
+  content: '+';
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  line-height: 1;
+  color: var(--accent);
+}
+.explainer-item[open] summary {
+  color: var(--accent2);
+}
+.explainer-item[open] summary::after {
+  content: '-';
+}
+.explainer-content {
+  padding: 0 4px 14px;
+}
+.explainer-content p {
+  margin-bottom: 10px;
+  text-align: left;
+  font-size: 15px;
+  color: #3f4a4d;
+}
+.explainer-content p:last-child {
+  margin-bottom: 0;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {
   h1 { font-size: 30px; }
@@ -811,6 +879,9 @@ blockquote cite {
   .iv-section-label { margin-left: 130px; }
   .methodology table { font-size: 10px; }
   .methodology td, .methodology th { padding: 4px 4px; }
+  .explainer-box { padding: 16px 14px; }
+  .explainer-box h4 { font-size: 20px; }
+  .explainer-item summary { font-size: 16px; }
 }
 </style>
 </head>
@@ -1000,6 +1071,46 @@ blockquote cite {
 <h2>III. The Three Loops and the Supervisory Layer Nobody Named</h2>
 
 <p>The Thoughtworks retreat identified a structural change in the developer's workflow that had been emerging in teams worldwide but lacked a name. Traditionally, software work involved two loops: the <em>inner loop</em> of writing, testing, and debugging code, and the <em>outer loop</em> of CI/CD, deployment, and operations. The retreat recognised a third: a <em>middle loop</em> of supervisory engineering work that sits between them<a class="ref" href="#ref9">[9]</a>.</p>
+
+<section class="explainer-box" aria-label="AI development terms quick explainer">
+<h4>Quick Explainer: Key Terms in This Article</h4>
+<p>Open any term below for a short plain-language definition.</p>
+
+<details class="explainer-item">
+  <summary>Agent</summary>
+  <div class="explainer-content">
+    <p>An agent is an AI system that can execute multi-step work with tools, not just answer a single question. In this context, it can read code, propose changes, run checks, and iterate toward a goal.</p>
+  </div>
+</details>
+
+<details class="explainer-item">
+  <summary>Prompt</summary>
+  <div class="explainer-content">
+    <p>A prompt is the instruction package given to the model: objective, constraints, context, and desired output format. Better prompts reduce ambiguity but do not replace verification.</p>
+  </div>
+</details>
+
+<details class="explainer-item">
+  <summary>Specification (Spec)</summary>
+  <div class="explainer-content">
+    <p>A spec is a precise definition of what must be built and how success is judged. For agent-assisted work, a strong spec includes scope boundaries, constraints, and testable acceptance criteria.</p>
+  </div>
+</details>
+
+<details class="explainer-item">
+  <summary>Inner, Middle, and Outer Loops</summary>
+  <div class="explainer-content">
+    <p>The inner loop is local generation and debugging. The middle loop is supervisory review and trust calibration. The outer loop is integration, deployment, and operations.</p>
+  </div>
+</details>
+
+<details class="explainer-item">
+  <summary>Context Window</summary>
+  <div class="explainer-content">
+    <p>The context window is the amount of text and artifacts the model can actively consider at once. If key constraints are missing from that window, output quality and consistency often degrade.</p>
+  </div>
+</details>
+</section>
 
 <div class="diagram">
 <h4>The Three Loops of AI-Native Development</h4>
