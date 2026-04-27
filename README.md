@@ -16,30 +16,32 @@ The article traces the shift through **50 years of paradigm history** (BASIC →
 
 ## Key Findings
 
-| Finding | Source |
-|---|---|
-| AI-generated code introduces **1.7× more issues** than human code | CodeRabbit (470 PRs) |
-| **43%** of AI code changes need production debugging after passing QA | Lightrun (200 SRE leaders) |
-| **0%** of engineering leaders "very confident" AI code works correctly | Lightrun survey |
-| Reviewers spend **91% more time** on AI-generated code | CodeRabbit |
-| Change failure rate **up 30%** with heavy GenAI usage | Cortex benchmark |
-| **6.3 million orders lost** in Amazon AI-assisted outage | Multiple sources |
+| Finding                                                                | Source                     |
+| ---------------------------------------------------------------------- | -------------------------- |
+| AI-generated code introduces **1.7× more issues** than human code      | CodeRabbit (470 PRs)       |
+| **43%** of AI code changes need production debugging after passing QA  | Lightrun (200 SRE leaders) |
+| **0%** of engineering leaders "very confident" AI code works correctly | Lightrun survey            |
+| Reviewers spend **91% more time** on AI-generated code                 | CodeRabbit                 |
+| Change failure rate **up 30%** with heavy GenAI usage                  | Cortex benchmark           |
+| **6.3 million orders lost** in Amazon AI-assisted outage               | Multiple sources           |
 
 ## Article Structure
 
-| § | Section | Focus |
-|---|---|---|
-| I | Fifty Years of Paradigm Shifts | Historical arc from BASIC to SDD |
-| II | The Inversion | Spec-driven development, quantitative data, waterfall vs. agile synthesis |
-| III | The Three Loops | Inner / Middle / Outer loop framework |
-| IV | The Job Market Earthquake | Generational fracture, pipeline paradox |
-| V | What Breaks at 2 a.m. | Tribal knowledge problem, Amazon Kiro case study |
-| VI | The New Hiring Calculus | Five interview questions for 2026 |
-| VII | The GPU Analogy | Historical parallels and their limits |
-| VIII | Cognitive Load & Burnout | Productivity experience paradox |
-| IX | The Security Gap | AI vulnerability rates, Linux Foundation response |
-| X | Unresolved Questions | Open problems the industry hasn't solved |
-| XI | Supervisory Automation Playbook | Six automations: Spec Clarifier, Test Oracle, Architecture Guardian, Angry Reviewer, Review Load Balancer, Learning Brief |
+| §    | Section                                     | Focus                                                                                                                     |
+| ---- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| I    | Fifty Years of Paradigm Shifts              | Historical arc from BASIC to SDD                                                                                          |
+| II   | The Inversion                               | Spec-driven development, quantitative data, waterfall vs. agile synthesis                                                 |
+| III  | The Three Loops                             | Inner / Middle / Outer loop framework                                                                                     |
+| IV   | The Job Market Earthquake                   | Generational fracture, pipeline paradox                                                                                   |
+| V    | What Breaks at 2 a.m.                       | Tribal knowledge problem, Amazon Kiro case study                                                                          |
+| VI   | The New Hiring Calculus                     | Five interview questions for 2026                                                                                         |
+| VII  | The GPU Analogy                             | Historical parallels and their limits                                                                                     |
+| VIII | Cognitive Load & Burnout                    | Productivity experience paradox                                                                                           |
+| IX   | The Security Gap                            | AI vulnerability rates, Linux Foundation response                                                                         |
+| X    | Unresolved Questions                        | Open problems the industry hasn't solved                                                                                  |
+| XI   | Supervisory Automation Playbook             | Six automations: Spec Clarifier, Test Oracle, Architecture Guardian, Angry Reviewer, Review Load Balancer, Learning Brief |
+| XII  | The Abstraction Ladder                      | The progression from hand-coded systems to outcome engineering                                                            |
+| XIII | Critical Evaluation and Reformulated Thesis | Limits, objections, and a tighter final argument                                                                          |
 
 ## The Six-Automation Playbook
 
@@ -69,13 +71,23 @@ The article traces the shift through **50 years of paradigm history** (BASIC →
 
 ```
 the-great-inversion/
-├── README.md                          # This file
-├── article/
-│   └── the-great-inversion.html       # Full article (self-contained HTML)
-├── critique/
-│   └── critique-and-suggestions.md    # Structural critique and review notes
-└── LICENSE                            # CC BY 4.0
+├── README.md                      # Project overview and navigation
+├── index.html                     # Main self-contained article
+├── assets/
+│   └── images/                    # Article illustrations
+├── auxiliary/                     # Alternate article drafts, critiques, and rebuttals
+├── backup/                        # Saved HTML backup versions
+├── dumps/                         # Archive output directory
+└── scripts/
+	└── create_clean_tar.sh        # Helper script for creating a clean project archive
 ```
+
+## Local Usage
+
+- Open `index.html` in a browser to read the current article locally.
+- `assets/images/` contains the images referenced by the article.
+- `auxiliary/` contains supporting material, including critiques, reformulations, and point-by-point rebuttals.
+- `backup/` contains older HTML snapshots and is not the primary publication target.
 
 ## References
 
