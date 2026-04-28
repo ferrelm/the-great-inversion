@@ -73,6 +73,8 @@ The article traces the shift through **50 years of paradigm history** (BASIC →
 the-great-inversion/
 ├── README.md                      # Project overview and navigation
 ├── index.html                     # Main self-contained article
+├── companion-unreliable-agent.html # Standalone companion essay on agent reliability and guardrail limits
+├── companion-fifty-years-paradigm-shifts.html # Standalone expanded Chapter I historical companion essay
 ├── assets/
 │   └── images/                    # Article illustrations
 ├── auxiliary/                     # Alternate article drafts, critiques, and rebuttals
@@ -85,6 +87,8 @@ the-great-inversion/
 ## Local Usage
 
 - Open `index.html` in a browser to read the current article locally.
+- Open `companion-unreliable-agent.html` in a browser to read the standalone companion essay.
+- Open `companion-fifty-years-paradigm-shifts.html` in a browser to read the expanded Chapter I standalone companion essay.
 - `assets/images/` contains the images referenced by the article.
 - `auxiliary/` contains supporting material, including critiques, reformulations, and point-by-point rebuttals.
 - `backup/` contains older HTML snapshots and is not the primary publication target.
