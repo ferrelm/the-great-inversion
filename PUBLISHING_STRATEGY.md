@@ -208,6 +208,37 @@ This shifts everything about how we think about:
 #SoftwareEngineering #CareerDevelopment #TechLeadership
 ```
 
+### Published LinkedIn Post Log
+
+**Post Date:** May 14, 2026  
+**Author:** Luis Matos Ferreira ([LinkedIn](https://www.linkedin.com/in/luismatosferreira))
+
+```text
+Software development has gone through several seismic shifts.
+And the pace keeps accelerating.
+
+A rough sketch (every simplification leaves something out):
+
+BASIC → C: Discipline replaces freedom
+C → OOP: Structure replaces procedural thinking
+Waterfall → Agile: Speed replaces prediction
+Now: Specification replaces code as the primary artifact
+
+Each time, the same anxiety: "Is the craft disappearing?"
+
+It never does. It migrates.
+
+With AI code generation, engineering excellence is no longer about how you write code. It's about how clearly you define what needs to be built — before a single line is generated.
+
+I wrote an analysis of this shift — what the data shows, where the risks are, and what it means for teams and hiring.
+
+Read it here → https://lnkd.in/egPKtum9
+
+What's your team doing differently since AI entered your workflow?
+
+hashtag#SoftwareEngineering hashtag#AI hashtag#EngineeringLeadership hashtag#TechLeadership
+```
+
 ---
 
 ## Twitter Strategy
