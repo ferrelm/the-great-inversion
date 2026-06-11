@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">The Physical App Store cover</title>
+  <desc id="desc">Abstract cover with robotic modules and platform grid for The Physical App Store companion article.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#132330"/>
+      <stop offset="100%" stop-color="#1d4f5f"/>
+    </linearGradient>
+    <linearGradient id="mod" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2dc1c5"/>
+      <stop offset="100%" stop-color="#1f8ea8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <g opacity="0.2" stroke="#b8dbe3" stroke-width="2">
+    <line x1="100" y1="360" x2="1500" y2="360"/>
+    <line x1="100" y1="520" x2="1500" y2="520"/>
+    <line x1="400" y1="220" x2="400" y2="760"/>
+    <line x1="800" y1="220" x2="800" y2="760"/>
+    <line x1="1200" y1="220" x2="1200" y2="760"/>
+  </g>
+
+  <g>
+    <rect x="220" y="430" width="230" height="150" rx="16" fill="url(#mod)"/>
+    <rect x="520" y="430" width="230" height="150" rx="16" fill="url(#mod)"/>
+    <rect x="820" y="430" width="230" height="150" rx="16" fill="url(#mod)"/>
+    <rect x="1120" y="430" width="230" height="150" rx="16" fill="url(#mod)"/>
+    <circle cx="335" cy="505" r="26" fill="#e8fbff"/>
+    <circle cx="635" cy="505" r="26" fill="#e8fbff"/>
+    <circle cx="935" cy="505" r="26" fill="#e8fbff"/>
+    <circle cx="1235" cy="505" r="26" fill="#e8fbff"/>
+  </g>
+
+  <text x="150" y="190" fill="#f1f8fa" font-family="Georgia, 'Times New Roman', serif" font-size="62" font-weight="700">The Physical App Store</text>
+  <text x="150" y="250" fill="#c6e7ec" font-family="Georgia, 'Times New Roman', serif" font-size="33" font-style="italic">How Robot Skills Extend The Great Inversion</text>
+
+  <text x="150" y="826" fill="#d0ebee" font-family="Georgia, 'Times New Roman', serif" font-size="28">The Great Inversion • Companion Series</text>
+</svg>
