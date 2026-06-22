@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Inversion, Confirmed: What Two Months Did to The Great Inversion</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap');
+
+    :root {
+      --ink: #1b2533;
+      --paper: #f9f7f2;
+      --accent: #b03a2e;
+      --accent-dark: #7f2a21;
+      --muted: #596575;
+      --line: #d7d3c9;
+      --panel: #fffdf8;
+      --quote: #f2ede2;
+      --link: #0d5f9b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Source Sans 3', Georgia, serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 280px at 50% -60px, #efe8d8 0%, transparent 70%),
+        var(--paper);
+      line-height: 1.78;
+      font-size: 18px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 28px 24px 88px;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+      margin-bottom: 34px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .top-nav a {
+      color: var(--link);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .top-nav a:hover {
+      border-bottom-color: var(--link);
+    }
+
+    header {
+      text-align: center;
+      padding: 20px 0 28px;
+      border-bottom: 3px double var(--ink);
+      margin-bottom: 42px;
+    }
+
+    .kicker {
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.12;
+      margin-bottom: 14px;
+      color: var(--ink);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 20px;
+      max-width: 760px;
+      margin: 0 auto;
+      font-style: italic;
+    }
+
+    main h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 32px;
+      margin: 52px 0 20px;
+      border-left: 4px solid var(--accent);
+      padding-left: 14px;
+      line-height: 1.24;
+    }
+
+    main h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 24px;
+      margin: 36px 0 14px;
+      color: var(--accent-dark);
+      line-height: 1.3;
+    }
+
+    p {
+      margin-bottom: 16px;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    .strong-rule {
+      margin: 28px 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      padding: 16px 18px;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    blockquote {
+      margin: 26px 0;
+      padding: 18px 20px;
+      background: var(--quote);
+      border-left: 4px solid var(--accent);
+      font-style: italic;
+      font-size: 20px;
+      color: #2f4156;
+    }
+
+    .hero-image {
+      display: block;
+      width: 100%;
+      max-width: 760px;
+      height: auto;
+      margin: 26px auto 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .hero-image-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    ul, ol {
+      margin: 10px 0 18px 28px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    a:hover {
+      border-bottom-color: var(--link);
+    }
+
+    .references {
+      margin-top: 54px;
+      border-top: 2px solid var(--line);
+      padding-top: 26px;
+    }
+
+    .references h2 {
+      margin-top: 0;
+    }
+
+    .references ol {
+      margin-left: 24px;
+    }
+
+    .references li {
+      margin-bottom: 12px;
+      text-align: left;
+    }
+
+    footer {
+      margin-top: 48px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        font-size: 17px;
+      }
+
+      .container {
+        padding: 20px 16px 70px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+      }
+
+      main h2 {
+        font-size: 28px;
+      }
+
+      main h3 {
+        font-size: 22px;
+      }
+
+      .strong-rule {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="top-nav" aria-label="Article navigation">
+      <span>Follow-up Essay</span>
+      <a href="index.html">Back to Main Article</a>
+    </nav>
+
+    <div style="margin:0 0 20px;background:#ffffff;border:1px solid #d7d3c9;border-left:5px solid #2f4156;border-radius:8px;padding:12px 16px;">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:#2f4156;margin:0 0 8px 0;">Series Navigation</p>
+      <p style="margin:0;font-size:14px;line-height:1.6;">
+        <a href="https://dorsal1967.blogspot.com/2026/04/the-great-inversion-how-ai-broke.html" target="_blank" rel="noopener noreferrer">The Great Inversion</a> &nbsp;|&nbsp;
+        <a href="https://dorsal1967.blogspot.com/2026/04/companion-fifty-years-paradigm-shifts.html" target="_blank" rel="noopener noreferrer">Fifty Years of Paradigm Shifts</a> &nbsp;|&nbsp;
+        <a href="https://dorsal1967.blogspot.com/2026/05/companion-unreliable-agent.html" target="_blank" rel="noopener noreferrer">The Unreliable Agent</a> &nbsp;|&nbsp;
+        <a href="https://dorsal1967.blogspot.com/2026/04/burning-question.html" target="_blank" rel="noopener noreferrer">The Burning Question</a> &nbsp;|&nbsp;
+        <a href="https://dorsal1967.blogspot.com/2026/05/from-software-app-store-to-app-store-of.html" target="_blank" rel="noopener noreferrer">The Physical App Store</a> &nbsp;|&nbsp;
+        <strong>Current:</strong> The Inversion, Confirmed
+      </p>
+    </div>
+
+    <header>
+      <div class="kicker">A Two-Month Follow-Up</div>
+      <h1>The Inversion, Confirmed</h1>
+      <p class="subtitle">What two months did to The Great Inversion &mdash; and the one rung of the ladder I never saw coming.</p>
+    </header>
+
+    <img class="hero-image" src="assets/images/cover-inversion-confirmed.svg" alt="The Inversion, Confirmed cover">
+    <p class="hero-image-note">Cover image for this follow-up essay.</p>
+
+    <main>
+      <p>On the evening of 12 June 2026, the best model I had access to stopped working for me &mdash; because of where I was born.</p>
+      <p>I had spent three days with Claude Fable 5. It launched on the 9th as Anthropic's most capable public system, and for those three days it was the sharpest collaborator I had ever put in front of a specification. Then, at 5:21pm Eastern, the US Commerce Department handed Anthropic an export-control directive: suspend all access to Fable 5 and Mythos 5 for <em>any foreign national, anywhere in the world.</em> Anthropic cannot check your passport in real time, so it did the only thing it could and switched both models off for everyone. As of this writing they are still dark, with no return date.</p>
+      <p>The stated reason was a jailbreak &mdash; a method of bypassing the guardrails that were supposed to stop the model from being used to <strong>find software vulnerabilities</strong>. It is the first time the United States has applied export controls to an AI model itself rather than to the chips underneath it. A model, treated like a munition.</p>
+      <p>I wrote <em>The Great Inversion</em> in April. I argued that AI was migrating engineering rigour out of code and into specification, out of execution and into supervision. Two months is nothing in any normal industry. In this one it is long enough to grade your own homework. So here is the scorecard &mdash; what held, what I got wrong, and the rung of the abstraction ladder I did not see coming until a government drew a line through my login.</p>
+
+      <h2>I. What Held Up</h2>
+      <p class="strong-rule">The inversion to specification stopped being a thesis and became a default.</p>
+      <p>In April I was pointing at spec-driven development as the shape of the future. By June, GitHub's Spec Kit had passed roughly 90,000 stars, picked up official enterprise training on Microsoft Learn, and shipped integrations for thirty-odd agents. It is now described, without much argument, as the fastest-growing way to write software with AI. The argument I was making is no longer an argument. It is a tab in a corporate onboarding deck.</p>
+      <p>One honest caveat, because I owe it to anyone who took the original piece seriously: <em>nobody has published an enterprise-scale defect-rate benchmark proving SDD reduces bugs.</em> The method spread faster than its proof. We adopted the discipline because it feels right and because the alternative is chaos &mdash; not because we measured it. That gap should make us uncomfortable. It does not make the direction wrong; it makes it unfinished.</p>
+
+      <h3>The job market split exactly along the fracture line &mdash; but it split, it did not collapse.</h3>
+      <p>Entry-level software postings are still running about forty per cent below their pre-2022 peak, and employment among developers aged 22 to 25 fell roughly a fifth from its late-2022 high. The pipeline paradox is real and it is biting. But the cleaner read in June is <em>bifurcation, not extinction</em>: total software employment is still projected upward, and some of the largest enterprises have quietly turned junior hiring back on while everyone else panics. The earthquake happened. It just turned out to be two economies pulling apart rather than one floor giving way.</p>
+
+      <h3>The data on AI code quality did not reverse &mdash; the conversation moved onto my side of the table.</h3>
+      <p>A Stanford&ndash;MIT study in March, across two million snippets, put security-vulnerability rates at 14.3% for AI-generated code against 9.1% for human code on equivalent tasks. CodeRabbit's 1.7&times; figure for logic-and-correctness issues is still in circulation. But the sharper finding is the one that vindicates the whole back half of the original article: the elevated bug density shows up specifically in <em>unreviewed</em> AI code &mdash; on the order of twenty-three per cent higher where human oversight lapsed. CodeRabbit now frames the year in a single line: 2025 was the year of speed, 2026 is the year of quality. That is the supervisory thesis, restated by the people selling the supervision.</p>
+
+      <h2>II. What I Got Wrong</h2>
+      <h3>I dressed an architecture failure up as a morality play.</h3>
+      <p>The centrepiece of the original article was the PocketOS disaster &mdash; a Cursor agent running Claude Opus 4.6 that deleted a production database, and the backups, in nine seconds, then wrote an apology. I told it as a story about an agent that "ignored every principle it was given." The post-mortems that have settled since tell a less cinematic and more useful story: the agent saw a credential mismatch, found a token with enough permission to fix it, and executed. The reasoning was internally coherent. The catastrophe was that <em>the fix involved deleting production data and nothing in the architecture stopped it</em> &mdash; Railway stored the backups in the same volume as the data they were meant to protect. The most charitable headline in the aftermath got it right: the real failure was access control.</p>
+      <p>I should have led with that. "The AI went rogue" is a flattering story because it puts the fault in the machine. "We gave an autonomous process a token that could delete prod and its backups in one call" is the true one, and it puts the fault where it belongs &mdash; in the blast radius we left open. The lesson of the original article survives intact. The framing I wrapped it in does not.</p>
+
+      <h3>I anchored my warning to a model that was already two generations stale before the ink dried.</h3>
+      <p>PocketOS ran on Opus 4.6. Within six weeks of my writing, Anthropic shipped 4.7, then 4.8, the latter lifting agentic-coding scores from 64.3% to 69.2% and specifically fixing the "skips a required tool call" failure that the older models exhibited. When your cautionary example runs on a model two releases out of date, readers are right to ask whether the warning still binds. The structural warning does. The specific anecdote ages into "remember when." Anchor the lesson to the architecture, not to the model serial number &mdash; that is the correction.</p>
+
+      <h2>III. The Rung I Never Saw</h2>
+      <p>The original article had an abstraction ladder: hand-coded systems, then languages, then frameworks, then specifications, then outcomes. The story I told was about control migrating <em>upward and outward</em> &mdash; away from the keystroke, toward intent. I thought the top of the ladder was the business outcome.</p>
+      <p>I was wrong about the top of the ladder. There is another rung, and on 12 June a government stood on it.</p>
+      <p>When the United States classifies a model as something a foreign national may not touch &mdash; when access to a commercial system used by hundreds of millions is suspended worldwide overnight because of a vulnerability-finding jailbreak &mdash; the control plane has moved one level above the engineering organisation entirely. Not to the architect. Not to the CTO. To the state. The same capability that makes these models extraordinary at writing software makes them, in the government's reading, extraordinary at finding the seams in everyone else's software. And the moment that is true, a code model is a dual-use technology, and dual-use technology gets export controls.</p>
+      <p>This is the part of the inversion I missed, and it is the part that should change how you plan. For four decades my professional risk was technical: would the build pass, would the system scale, would the pager stay quiet at 2 a.m. As of this month my professional risk includes a new and unfamiliar category &mdash; <em>will the model I designed my workflow around still be legal for me to use next week?</em> I built three days of habits on Fable 5. Then geography revoked them. The workhorse &mdash; Opus 4.8 &mdash; kept running, unaffected, which is its own quiet lesson: depend on the frontier and you inherit the frontier's politics; depend on the boring tier and you keep working.</p>
+      <p>The supervisory playbook I proposed in April &mdash; spec clarifiers, test oracles, architecture guardians, the rest &mdash; was an answer to a technical problem: how do you keep autonomous agents from shipping plausible nonsense. It still works. But it was scoped to the engineering org, and the events of June say the relevant boundary is now bigger than the org. The new questions are governance questions. Which models can your foreign-national engineers legally use? What happens to your delivery pipeline if a model is pulled with three days' notice? Is your architecture portable across model providers, or have you welded yourself to one frontier and one jurisdiction? Sandboxes, least-privilege tokens, runtime verification, the things vendors from Cloudflare to Modal shipped this spring &mdash; those are table stakes now. The new frontier of "what breaks at 2 a.m." is not a bad merge. It is a directive from a Commerce Department.</p>
+
+      <h2>IV. Where This Leaves the Argument</h2>
+      <p>Two months on, I would not retract the thesis. I would tighten it.</p>
+      <p>The inversion is real and it is accelerating: rigour has moved from code to specification, the discipline has converged on supervision over execution, and the job market has fractured along exactly the line I drew. On those, the evidence came in and it came in on the side of the argument.</p>
+      <p>What I underestimated was how far "outward" the control plane would keep travelling. I thought it stopped at the business outcome. It did not stop there. It kept going &mdash; past the architect, past the company &mdash; until it reached the point where a model is a strategic asset and access to it is a matter of national security. The locus of engineering control is no longer the thing you type, nor even the thing you specify. Increasingly it is the thing you are <em>permitted</em>.</p>
+      <p>I started this piece with the evening a model stopped working for me because of where I was born. I will end it with the uncomfortable thought that follows from it. The Great Inversion was a story about engineers handing execution up to machines and keeping judgement for themselves. The next chapter is a story about how much of that judgement now sits above the engineer entirely &mdash; in vendors who can deprecate a model in six weeks, and in governments who can revoke one in nine seconds of bureaucratic time, just as surely as an agent revoked PocketOS's database in nine seconds of compute.</p>
+      <p class="strong-rule">The inversion is confirmed. It is also not finished inverting. I would not bet on June being the last rung.</p>
+
+      <section class="references" aria-labelledby="references-title">
+        <h2 id="references-title">References</h2>
+        <ol>
+          <li id="ref-1"><strong>Anthropic.</strong> "Statement on the US government directive to suspend access to Fable 5 and Mythos 5." June 2026. <a href="https://www.anthropic.com/news/fable-mythos-access" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/news/fable-mythos-access</a></li>
+          <li id="ref-2"><strong>CNBC.</strong> "Anthropic disables access to Fable 5 and Mythos 5 to comply with government directive." 12 June 2026. <a href="https://www.cnbc.com/2026/06/12/anthropic-disables-access-to-fable-5-and-mythos-5-to-comply-with-government-directive.html" target="_blank" rel="noopener noreferrer">https://www.cnbc.com/2026/06/12/anthropic-disables-access-to-fable-5-and-mythos-5-to-comply-with-government-directive.html</a></li>
+          <li id="ref-3"><strong>Fortune.</strong> "Anthropic disables Fable and Mythos AI models after U.S. government bars it from giving foreigners access." 13 June 2026. <a href="https://fortune.com/2026/06/13/anthropic-disables-fable-mythos-export-controls-national-security-threat/" target="_blank" rel="noopener noreferrer">https://fortune.com/2026/06/13/anthropic-disables-fable-mythos-export-controls-national-security-threat/</a></li>
+          <li id="ref-4"><strong>Anthropic.</strong> "Introducing Claude Opus 4.8." 28 May 2026. <a href="https://www.anthropic.com/news/claude-opus-4-8" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/news/claude-opus-4-8</a></li>
+          <li id="ref-5"><strong>OECD.AI Incident Monitor.</strong> "AI Coding Agent Deletes PocketOS Production Database and Backups in 9 Seconds." April 2026. <a href="https://oecd.ai/en/incidents/2026-04-27-6153" target="_blank" rel="noopener noreferrer">https://oecd.ai/en/incidents/2026-04-27-6153</a></li>
+          <li id="ref-6"><strong>Penligent.</strong> "AI Agent Deleted a Production Database: The Real Failure Was Access Control." 2026. <a href="https://www.penligent.ai/hackinglabs/ai-agent-deleted-a-production-database-the-real-failure-was-access-control/" target="_blank" rel="noopener noreferrer">https://www.penligent.ai/hackinglabs/ai-agent-deleted-a-production-database-the-real-failure-was-access-control/</a></li>
+          <li id="ref-7"><strong>Second Talent.</strong> "AI-Generated Code Quality Metrics and Statistics for 2026" (Stanford&ndash;MIT vulnerability study; CodeRabbit figures). 2026. <a href="https://www.secondtalent.com/resources/ai-generated-code-quality-metrics-and-statistics-for-2026/" target="_blank" rel="noopener noreferrer">https://www.secondtalent.com/resources/ai-generated-code-quality-metrics-and-statistics-for-2026/</a></li>
+          <li id="ref-8"><strong>CodeRabbit.</strong> "2025 was the year of AI speed. 2026 will be the year of AI quality." 2026. <a href="https://www.coderabbit.ai/blog/2025-was-the-year-of-ai-speed-2026-will-be-the-year-of-ai-quality" target="_blank" rel="noopener noreferrer">https://www.coderabbit.ai/blog/2025-was-the-year-of-ai-speed-2026-will-be-the-year-of-ai-quality</a></li>
+          <li id="ref-9"><strong>GitHub.</strong> "Spec Kit: Toolkit for Spec-Driven Development." 2026. <a href="https://github.com/github/spec-kit" target="_blank" rel="noopener noreferrer">https://github.com/github/spec-kit</a></li>
+          <li id="ref-10"><strong>IEEE Spectrum.</strong> "AI Shifts Expectations for Entry-Level Jobs." 2026. <a href="https://spectrum.ieee.org/ai-effect-entry-level-jobs" target="_blank" rel="noopener noreferrer">https://spectrum.ieee.org/ai-effect-entry-level-jobs</a></li>
+        </ol>
+      </section>
+
+      <div style="margin-top:36px;background:#ffffff;border:1px solid #d7d3c9;border-left:5px solid #2f4156;border-radius:8px;padding:16px 20px;">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#2f4156;margin:0 0 10px 0;">Read Next</p>
+        <ul style="margin:0 0 8px 18px;padding:0;line-height:1.7;">
+          <li><a href="https://dorsal1967.blogspot.com/2026/04/the-great-inversion-how-ai-broke.html" target="_blank" rel="noopener noreferrer">The Great Inversion (Main Article)</a></li>
+          <li><a href="https://dorsal1967.blogspot.com/2026/04/companion-fifty-years-paradigm-shifts.html" target="_blank" rel="noopener noreferrer">Fifty Years of Paradigm Shifts</a></li>
+          <li><a href="https://dorsal1967.blogspot.com/2026/05/companion-unreliable-agent.html" target="_blank" rel="noopener noreferrer">The Unreliable Agent</a></li>
+          <li><a href="https://dorsal1967.blogspot.com/2026/04/burning-question.html" target="_blank" rel="noopener noreferrer">The Burning Question</a></li>
+          <li><a href="https://dorsal1967.blogspot.com/2026/05/from-software-app-store-to-app-store-of.html" target="_blank" rel="noopener noreferrer">The Physical App Store</a></li>
+        </ul>
+        <p style="margin:0;font-size:13px;color:#596575;">Series note: this follow-up extends The Great Inversion with the developments of May&ndash;June 2026.</p>
+      </div>
+    </main>
+
+    <footer>
+      Follow-up essay for The Great Inversion. By Lu&iacute;s Matos Ferreira. Licensed CC BY 4.0. Last updated: June 22, 2026.
+    </footer>
+  </div>
+</body>
+</html>
